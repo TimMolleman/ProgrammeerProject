@@ -1,1 +1,3 @@
-# ProgrammeerProject
+# Programmeerproject voorstel
+Tim Molleman
+
