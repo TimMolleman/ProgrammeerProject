@@ -39,17 +39,17 @@ Ik heb op dit moment ook nog nauwelijks oog op wat voor technische problemen ik 
 
 ##Minimum Viable Product
 Enkele dingen zou ik echter pas later kunnen proberen toe te passen, als blijkt dat ik nog genoeg tijd heb. 
-Daarvoor wil ik sowieso de volgende dingen goed werkend hebben:
+Daarvoor wil ik sowieso de volgende dingen goed werkend hebben (MVP):
 - Barchart en datamap op de home pagina interacteren naar behoren.
-- De slider voor de datamap op de home pagina functioneert naar behoren.
-- De datamap op de migration routes pagina is compleet (waarschijnlijk met cirkels, wellicht pijlen)
+- De sliders voor de datamaps op zowel de home pagina als de migration routes pagina functioneren naar behoren.
+- De datamap op de migration routes pagina is compleet (waarschijnlijk met cirkels, wellicht pijlen).
 - De lijngrafiek op de migrant growth pagina laat groei van immigranten in Europa zien in één lijn
 - Layout van de gehele site is naar behoren
 
-Dingen die ik nog zou kunnen toevoegen als er tijd is:
-- In de barchart op de homepagina 
-
-Ik wil er eerst namelijk sowieso voor zorgen dat mijn datamap en barchart op de 'Home'-pagina goed interacteren en dat de slider bij deze datamap naar behoren werkt. Dit zie ik als noodzakelijk voor het uiteindelijke product. De bogen zou ik 
+Dingen die ik nog zou kunnen toevoegen als er tijd is (optioneel):
+- In de barchart op de homepagina bogen die aangeven uit welke (top 5) landen immigranten komen voor een land waarop geklikt wordt. Wellicht nog het aantal immigranten dat uit deze landen komt ernaast.
+- In de lijngrafiek op de migrant growth pagina een drop-down menu toevoegen, zodat de gebruiker meerdere lijnen te zien krijgt voor het gebruik van de verschillende migratieroutes in Europa door immigranten, over de jaren heen.
+- Wellicht sla ik ofwel de tweede datamap, ofwel de lijngrafiek over, wanneer blijkt dat dit onhaalbaar is. Ik kan dit op het moment voor mezelf nog niet heel goed inschatten.
 
 
 
