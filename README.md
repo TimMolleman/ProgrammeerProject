@@ -9,7 +9,7 @@ In mijn applicatie wil ik gebruikers visualizaties aanbieden die voor hen een du
 Hoe ga ik deze visualizaties vormgeven? Ik wil een website maken met verschillende pagina's die allen een eigen functie vervullen in het aanbieden van informatie over het migratieprobleem. Hiervoor zal ik waarschijnlijk 3 webpagina's gebruiken, met als titels: 'Home', 'Migration Routes' en 'Migrant Growth'. Ik zal hieronder een schets laten zien voor elke pagina en uitlege geven over deze pagina.
 
 ###Home:
-![](doc/home.png)
+![](doc/home.jpg)
 
 Op de 'Home'-pagina zal ik ten eerste een uitleg geven over de Europese migratiecrisis aan de hand van twee paragrafen. Tussen deze twee paragrafen laat ik nog een automatische slideshow lopen die foto's laat zien die gerelateerd zijn aan de Europese migratiecrisis. Onder deze uitleg zal er vervolgens een datamap aanwezig zijn die is 'gefocust' op Europa. De (Europese) landen op deze kaart zullen ingekleurd zijn met één kleur met verschillende (bijvoorbeeld vijf) tinten. Hierbij zal een lichtere kleurentint betekenen dat een bepaald land minder vluchtelingen heeft opgenomen en een donkerdere kleur zal betekenen dat een bepaald land meer vluchtelingen heeft opgenomen. Mijn idee is om onder de datamap een 'slider' toe te voegen die ervoor zorgt dat gebruikers voor verschillende jaren kunnen kijken hoeveel immigranten ieder Europees land voor het gekozen jaar (op de slider) heeft opgenomen. Dit kan bijvoorbeeld voor de jaren 2000 totenmet 2015, waarbij ieder tussenliggend jaar geselecteerd kan worden op de slider. De kleurentinten van landen op de kaart zullen bij verschuiving van de slider dan veranderen op basis van het aantal immigranten dat landen dat jaar hebben opgenomen. Wanneer de gebruiker met de muis over een land heen gaat, wil ik dat het aantal immigranten dat het land dat jaar heeft opgenomen zichtbaar wordt in een tooltip (en natuurlijk ook de naam van het land). 
 Een optie die ik wellicht ook nog wil implementeren is dat het mogelijk is om lijnen/bogen te laten verschijnen wanneer er op een land geklikt wordt (aan de hand van bijvoorbeeld een button). Deze bogen zouden dan van dit land naar een aantal landen (bijv. 5 landen) gaan waar de meeste immigranten vandaan komen die het land heeft opgenomen waarop geklikt is. Wellicht wil ik naast deze bogen dan ook nog het aantal immigranten uit ieder van deze landen melden.
@@ -19,12 +19,12 @@ Wanneer er op een land geklikt wordt in de hierboven beschreven datamap wil ik h
 Bovenaan de 'Home'-pagina zal een header aanwezig zijn die 'fixed' gepositioneerd is en dus meebeweegt over de hele pagina. In deze header zal een titel staan en een navigatiemenu waarmee de gebruiker naar de verschillende pagina's op de website kan navigeren. Deze header is overigens ook aanwezig op de andere pagina's van de website.
 
 ###Migration Routes
-![](doc/routes.png)
+![](doc/routes.jpg)
 
 Op de 'Migration Routes'-pagina zal ik eerst een korte uitleg geven over migratieroutes naar Europa. Er zijn namelijk verschillende veelgebruikte routes die immigranten gebruiken om naar Europa te komen. Onder deze uitleg staat wederom een datamap. Deze keer staat er geen informatie over heet aantal immigranten dat ieder land opneemt, maar staat er hoeveel immigranten er via verschillende routes Europa binnenkomen. Deze routes wil ik aangeven aan de hand van cirkels (zie foto) of - als dit mogelijk is - aan de hand van pijlen. De grootte van de cirkels/pijlen geven dan aan hoeveel immigranten er via een bepaalde route Europa binnenkomen. Ook hier wil ik weer een slider toevoegen waarmee de gebruiker een jaar kan kiezen. De cirkels/pijlen zullen voor ieder jaar veranderen van grootte, aan de hand van de hoeveelheid immigranten dat via de verschillende routes Europa binnenkomt.
 
 ###Migrant Growth
-![](doc/growth.png)
+![](doc/growth.jpg)
 
 Op de 'Migrant Growth'-pagina zal ik een lijngrafiek toevoegen die laat zien hoeveel immigranten er in totaal in Europa zijn binnengekomen over een spanne van een aantal jaren (wederom, bijvoorbeeld 2000-2015). Ook wil ik aan deze lijn een tooltip toevoegen die het aantal immigranten laat zien voor een bepaald jaar (afhankelijk van muispositie). Wellicht wil ik bij de lijngrafiek ook nog een optie toevoegen die ervoor zorgt dat men over dit aantal jaren kan zien via welke migratieroutes immigranten naar Europa kwamen, door voor iedere immigratieroute een lijn te laten zien.
 
