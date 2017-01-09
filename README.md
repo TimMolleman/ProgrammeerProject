@@ -1,6 +1,9 @@
 #Programmeerproject voorstel
 ####Tim Molleman
 
+##Doel van het Project
+Het project heeft als doel om gebruikers meer statistische informatie te verschaffen over immigratiestromen richting Europa. Om dit doel te bereiken zullen er 2 datamaps, een barchart en een lijngrafiek worden gebruikt. Deze zullen op een website met verschillende pagina's worden weergegeven in combinatie met stukken tekstuele informatie.
+
 ##Het Probleem
 In Europa is er sinds 2015 sprake van een grote stroom migranten (vaak aangeduid als 'vluchtelingen') - bestaande uit zowel echte vluchtelingen als gelukszoekers die zich voordoen als vluchtelingen - die een nieuw thuis proberen te vinden in Europese landen. Er is zelfs sprake van een ware migratiecrisis. Mede door deze crisis zijn er veel politieke spanningen ontstaan in veel Europese landen.
 In mijn applicatie wil ik gebruikers visualizaties aanbieden die voor hen een duidelijker en coherenter beeld kunnen scheppen over bepaalde aspecten van deze migratiecrisis. Hierdoor kunnen zij voor zichzelf een beter beeld krijgen over hoe groot het probleem nou daadwerkelijk is en kunnen ze beter geïnformeerde standpunten innemen over de migratiecrisis.
@@ -51,6 +54,7 @@ Dingen die ik nog zou kunnen toevoegen als er tijd is (optioneel):
 - In de lijngrafiek op de migrant growth pagina een drop-down menu toevoegen, zodat de gebruiker meerdere lijnen te zien krijgt voor het gebruik van de verschillende migratieroutes in Europa door immigranten, over de jaren heen.
 - Wellicht sla ik ofwel de tweede datamap, ofwel de lijngrafiek over, wanneer blijkt dat implementatie van beiden onhaalbaar is. Ik kan dit op het moment voor mezelf nog niet heel goed inschatten.
 
-
+##Gelijkmatige implementaties
+Er zijn op het web al best veel visualizaties te vinden om meer over de migratiecrisis duidelijk te maken. Zij gebruiken vaak barcharts om aantallen weer te geven, en kaarten in combinatie met pijlen om migratieroutes weer te geven.
 
 
