@@ -2,4 +2,4 @@
 ####Tim Molleman
 
 ##Diagram van Structuur van de Site
-![](doc/webDiagram.png)
+![](doc/webDia.png)
