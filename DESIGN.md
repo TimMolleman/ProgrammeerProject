@@ -9,7 +9,7 @@ Ik zal de diagram uitleggen per html-pagina die er op mijn site zal komen.
 
 ### index.html
 #### Schets
-![](doc/homedesign)
+![](doc/home)
 #### Uitleg
 Dit is de html-pagina die uiteindelijk de homepagina van de website zal vormen. Ik zal een stukje uitleg over de migratiecrisis in Europa geven op deze pagina, waarna er een automatische slideshow volgt van foto's die gerelateerd zijn aan de migratiecrisis. Voor deze slideshow zal ik een API gebruiken genaamd 'blueberry'. Deze API bestaat uit een javascript file genaamd "jquery.blueberry.js" en een CSS file genaamd "blueberry.css". Om een werkende slideshow te krijgen hoef ik verder in principe geen javascript code toe te voegen behalve:
 "<script>
