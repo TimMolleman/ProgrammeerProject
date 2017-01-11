@@ -2,7 +2,7 @@
 ####Tim Molleman
 
 ## Diagram van Structuur van de Site
-![](doc/webDia.png)
+![](doc/diagram.jpg)
 
 ## Uitleg Diagram
 Ik zal de diagram uitleggen per html-pagina die er op mijn site zal komen.
