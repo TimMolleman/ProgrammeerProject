@@ -1,0 +1,93 @@
+* {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+h1 {
+	padding: 1%;
+}
+h2 {
+	padding: 1%;
+}
+#map {
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto;
+	text-align: center;
+}
+#navigation {
+	float: right;
+	padding: 20px 20px 20px 0;
+}
+#navigation ul li{
+	display: inline-block;
+	float: left;
+	padding: 10px;
+	font-size: 24px;
+}
+#navigation ul li a .current {
+	color: black;
+}
+#navigation ul li a {
+	color: white;
+	display: inline-block;
+	text-decoration: none;
+}
+#navigation ul li a:hover{
+	text-decoration: underline;
+}
+#header {
+	width: 100%;
+	height: 85px;
+	background: #405580;
+	position: fixed;
+	opacity: 0.9;
+	z-index: 100;
+}
+#header h1 {
+	float: left;
+	width: 40%;
+	color: white;
+}
+#doc {
+	margin: 40px 0;
+}
+#content {
+	margin: 0 auto;
+	max-width: 1140px;
+	margin-top: 30px;
+}
+.blueberry {
+	max-width: 700px;
+}
+.clear {
+	height: 85px;
+	padding: 1%;
+}
+.info {
+	text-align: center;
+	width: 60%;
+	margin: 0 auto;
+	padding: 1%;
+}
+.info p {
+	line-height: 150%;
+}
+.slideholder {
+	margin: 0 auto;
+	text-align: center;
+}
+.slider {
+	width: 40%;
+}
+.bar img {
+	display: block;
+	width: 40%;
+	margin: 0 auto;
+}
+.line img {
+	display: block;
+	width: 40%;
+	margin: 0 auto;
+}
+

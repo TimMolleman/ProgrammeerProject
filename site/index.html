@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Main page for project</title>
+	<link rel="stylesheet" href="general.css"/>
+	<link rel="stylesheet" href="blueberry.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	<script src="jquery.blueberry.js"></script>
+	<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+	<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+</head>
+
+<script>
+$(window).load(function() {
+	$('.blueberry').blueberry();
+});
+</script>
+
+<body>
+	<div id="header">
+		<a href="index.html"><h1>Europe's Migration Crisis</h1></a>
+		<div id="navigation">
+			<ul>
+				<li><a href="index.html" class="current">Home</a></li>
+				<li><a href="routes.html">Migration Routes</a></li>
+				<li><a href="growth.html">Migrant Growth</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="clear">
+	</div>
+	<div class="info">
+		<h1>Europe's Current Migration Crisis</h1>
+		<h2>How Big is the Problem?</h2> 
+		<p>The unauthorized foreign migrants came mostly from Muslim-majority countries of the regions of Western Asia (Middle East), South Asia, Africa (North Africa and Sub-Saharan Africa),[13][14] and Western Balkans.[15] By religious affiliation, the overwhelming majority of entrants were Muslim (including Sunni Muslims, but also non-Sunni minorities), with a small component of non-Muslim minorities (including Yazidis, Assyrians, Mandeans, etc.). According to the United Nations High Commissioner for Refugees, the top three nationalities of entrants of the over one million Mediterranean Sea arrivals between January 2015 and March 2016 were Syrian (46.7%), Afghan (20.9%) and Iraqi (9.4%),[16] all overwhelmingly Muslim entrants.</p>
+	</div>
+	<div id="doc">
+		<div id="content">
+			<div class="blueberry">
+				<ul class="slides">
+					<li><img src="http://www.euractiv.com/wp-content/uploads/sites/2/2015/08/europe-migrant-boat-disaster.jpeg"></li>
+					<li><img src="http://www.economonitor.com/wp-content/uploads/2016/04/wee-migrants_3481243b.jpg"/></li>
+					<li><img src="http://static4.businessinsider.com/image/55def251bd86ef1f008b638e-2200-1529/rtx1pocf.jpg"/></li>
+					<li><img src="http://images.catchnews.com/uploads/images/2015/09/05/european-refugee-crisis-embed4.jpg"/></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="info">
+		<p>The number of deaths at sea rose to record levels in April 2015, when five boats carrying almost 2,000 migrants to Europe sank in the Mediterranean Sea, with a combined death toll estimated at more than 1,200 people.[18] The shipwrecks took place in a context of ongoing conflicts and refugee crises in several Asian and African countries, which increased the total number of forcibly displaced people worldwide at the end of 2014 to almost 60 million, the highest level since World War II.[19][20]</p>
+	</div>
+	<div id="map">
+	</div>
+	<div class="slideholder">
+		<input class="slider" type="range" name="points" min="2006" max="2015">
+	</div>
+	<div class="bar">
+		<img src="http://www.conceptdraw.com/How-To-Guide/picture/Vertical-bar-chart-Global-competitiveness-index-infrastructure-score.png"/>
+	</div>
+
+	<script src="index.js"></script>
+</body>	
+</html>

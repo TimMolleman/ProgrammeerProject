@@ -50,7 +50,7 @@ Voorlopige lijst:
 Bronnen:
 - http://data.un.org/Data.aspx?d=UNHCR&f=indID%3aType-Ref (data aantal vluchtelingen per land van 1975-2013 wereldwijd. Bron: Verenigde Naties)
 - http://ec.europa.eu/eurostat/statistics-explained/index.php?title=File:Five_main_citizenships_of_(non-EU)_asylum_applicants,_2014_(number,_rounded_figures)_YB15_II.png&oldid=225318 (number_of_first_time_applicants,_rounded_figures)_YB16.png (data top 5 landen waar het meeste immigranten vandaan komen voor ieder lidland van de EU voor 2014)
-- http://ec.europa.eu/eurostat/statistics-explained/index.php/File:Five_main_citizenships_of_(non-EU)_asylum_applicants,_2015_(number_of_first_time_applicants,_rounded_figures)_YB16.png  (number_of_first_time_applicants,_rounded_figures)_YB16.png (data top 5 landen waar het meeste immigranten vandaan komen voor ieder lidland van de EU voor 2015)
+- http://ec.europa.eu/eurostat/statistics-explained/index.php/File:Five_main_citizenships_of_(non-EU)_asylum_applicants,_2015_(number_of_first_time_applicants,_rounded_figures)_YB16.png (data top 5 landen waar het meeste immigranten vandaan komen voor ieder lidland van de EU voor 2015)
 
 Format:
 [{"country": "Netherlands", "year": {"2008": {"Algerije": "30", "Botswana": "200", "Syrië": "5400", ...., "Total": "18754"}, "2009": {"Algerije": "30", "Botswana": "200", "Syrië": "5400", ...., "Total": "18754"}}}, {"country": "Germany", "year": {"2008": {"Algerije": "30", "Botswana": "200", "Syrië": "5400", ...., "Total": "18754"}, "2009": {"Algerije": "30", "Botswana": "200", "Syrië": "5400", ...., "Total": "18754"}}}]
