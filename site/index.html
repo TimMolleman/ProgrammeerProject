@@ -10,6 +10,7 @@
 	<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="http://d3js.org/topojson.v1.min.js"></script>
 	<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+	<script src="https://d3js.org/d3-queue.v3.min.js"></script>
 </head>
 
 <script>
@@ -51,7 +52,9 @@ $(window).load(function() {
 	<div class="info">
 		<p>The number of deaths at sea rose to record levels in April 2015, when five boats carrying almost 2,000 migrants to Europe sank in the Mediterranean Sea, with a combined death toll estimated at more than 1,200 people.[18] The shipwrecks took place in a context of ongoing conflicts and refugee crises in several Asian and African countries, which increased the total number of forcibly displaced people worldwide at the end of 2014 to almost 60 million, the highest level since World War II.[19][20]</p>
 	</div>
-	<div id="map">
+	<div id="mapcontainer" style="position: relative">
+	<div id="map" style="position: relative">
+	</div>
 	</div>
 	<div class="slideholder">
 		<input class="slider" type="range" name="points" min="2006" max="2015">
@@ -59,6 +62,7 @@ $(window).load(function() {
 	<div class="bar">
 		<img src="http://www.conceptdraw.com/How-To-Guide/picture/Vertical-bar-chart-Global-competitiveness-index-infrastructure-score.png"/>
 	</div>
+
 
 	<script src="index.js"></script>
 </body>	
