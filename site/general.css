@@ -84,13 +84,26 @@ h2 {
 .slider {
 	width: 40%;
 }
-.bar img {
-	display: block;
-	width: 40%;
-	margin: 0 auto;
+.bar {
+	/*float: left;*/
 }
 .line img {
 	display: block;
 	width: 40%;
 	margin: 0 auto;
+}
+.line {
+	/*float: right;*/
+}
+.popup
+{
+	color: black;
+	border: 1px grey;
+	border-style: solid;
+	background-color: white;
+	font-size: 12px;
+}
+.datamap 
+{
+	background: white;
 }

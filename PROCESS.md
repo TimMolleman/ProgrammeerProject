@@ -16,3 +16,12 @@
 - Datamap laten inzoomen op Europa
 - Over alternatieve visualisaties nagedacht (op dit moment heb ik geen 3 visualisaties die gelinked zijn aan elkaar)
 - Geprobeerd mijn JSON beter te formatten om te kunnen gebruiken met d3 (dit is mij vandaag niet gelukt en snap niet hoe ik het moet doen)
+
+# weekend
+- Dataset was niet goed voor mijn doeleinden (verkeerde definitie van vluchtelingen werd gehanteerd). Geprobeerd om juiste data te vinden. Jusite data gevonden. Ik ben er echter nog niet geslaagd om deze data in juiste JSON-format te zetten. De dataset bevat data over asielzoekers van 2006 totenmet 2016.
+
+# day 6 (16 januari 2017)
+- Dataset die ik in het weekend gevonden heb in juiste JSON-format gezet.
+- Aan de hand van deze dataset tweede dataset gestructureerd die gebruikt kan worden voor het inkleuren van de datamap.
+- Deze tweede dataset verbonden aan de datamap. Ook de slider heb ik al werkend gemaakt: Kleuren in de kaart worden geupdated aan de hand van het jaar dat op de slider gekozen is.
+- Begin gemaakt aan het implementeren van de barchart.
