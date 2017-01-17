@@ -107,3 +107,23 @@ h2 {
 {
 	background: white;
 }
+.d3tip 
+{
+	line-height: 1;
+	font-weight: bold;
+	padding: 5px;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	border-radius: 10px;
+}
+.axis path,
+.axis line
+{
+  	fill: none;
+  	stroke: #000;
+  	shape-rendering: crispEdges;
+}
+.x.axis path
+{
+	/*display: none;*/
+}

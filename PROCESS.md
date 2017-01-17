@@ -25,3 +25,8 @@
 - Aan de hand van deze dataset tweede dataset gestructureerd die gebruikt kan worden voor het inkleuren van de datamap.
 - Deze tweede dataset verbonden aan de datamap. Ook de slider heb ik al werkend gemaakt: Kleuren in de kaart worden geupdated aan de hand van het jaar dat op de slider gekozen is.
 - Begin gemaakt aan het implementeren van de barchart.
+
+# day 7
+- Ik was ziek dus heb niet veel kunnen doen.
+- Wel barchart weten te laten verschijnen wanneer er op een land geklikt wordt met info over de 5 meeste landen waar vluchtelingen vandaan kwamen voor het land waarop geklikt is. Tot nu toe alleen voor 1 jaar gelukt.
+- Morgen zorgen dat dit mogelijk is voor elk jaar in de dataset.

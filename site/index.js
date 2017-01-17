@@ -114,21 +114,20 @@ function analyze(error, migrants, refstreams) {
 	}
 	console.log(migrants);
 
-	console.log([1, 4, 2].includes(3))
-
 	// get the year that corresponds to slide-bar's initial position
 	var init_slide = document.getElementById('slider');
-	var first_year = init_slide.value;
+	var cur_year = init_slide.value;
 
 	// get the initial corresponding map
-	var map = updateMap(first_year, migrants);
+	var map = updateMap(cur_year, migrants);
 
+	// get the barchart going bitch
 	map.svg.selectAll('.datamaps-subunit')
 		.on('click', function(geography) {
 
 			// safe the data for the right year in a variable
 			for (i = 0; i < migrants.length; i++)
-				if (migrants[i].year == first_year)
+				if (migrants[i].year == cur_year)
 				{
 					var cur_data = migrants[i];
 				}
@@ -146,9 +145,11 @@ function analyze(error, migrants, refstreams) {
 			}
 			console.log(country_data);
 
+			// arrays for storing data of refugees based on 5 most prevalent origins
 			var max_value = [];
 			var max_data = [];
 
+			// loop for 5 times, to store 5 of the countries with biggest amount of refugees
 			for (i = 0; i < 5; i++)
 			{
 				max = 0
@@ -179,9 +180,13 @@ function analyze(error, migrants, refstreams) {
 				for (j = 0; j < country_data.refugees.length; j++)
 					if (Number(country_data.refugees[j].number) == max_value[k])
 					{
+						country_data.refugees[j].number = Number(country_data.refugees[j].number)
 						max_data.push(country_data.refugees[j]);
 					}
 				}
+
+			console.log(max_value);
+			console.log(max_data);
 
 			/* maak barchart */
 			var margins = {top: 50, bottom: 40, left: 55, right : 0};
@@ -191,21 +196,79 @@ function analyze(error, migrants, refstreams) {
 		    var barSpace = 20;
 
 		    // define the width of the svg element and height
-		    var width2 = (barWidth + barSpace) * data_x.length - margins2.left - margins2.right;
-		    var height2 = 500 - margins2.top - margins2.bottom;
+		    var width = (barWidth + barSpace) * max_data.length - margins.left - margins.right,
+		    	height = 500 - margins.top - margins.bottom;
 
-			console.log(max_value);
-			console.log(max_data);
+		    var x = d3.scale.ordinal()
+            	.domain(max_data.map( function(d) {return d.origin; }))
+            	.rangeRoundBands([0, width], 0.1);
+
+            var xAxis = d3.svg.axis()
+            	.scale(x)
+            	.orient("bottom")
+
+            var y_bounds = d3.extent(max_data, function(d) { return d.number });
+            y_bounds[0] = y_bounds[0] * 0.9;
+            y_bounds[1] = y_bounds[1] * 1.05;
+            
+            var y = d3.scale.linear()
+            	.domain(y_bounds)
+            	.rangeRound([height, 0]);
+
+            var yAxis = d3.svg.axis()
+            	.scale(y)
+            	.orient("left")
+
+        	var tip = d3.tip()
+			.attr("class", "d3tip")
+			.offset([-10, 0])
+			.html(function(d) { return "<strong>" + d.origin + ":</strong> <span style='color:red'>" 
+				+ d.number + "</span>"; });
+
+			d3.select('.barchart').remove();
+			d3.select('.d3tip').remove();
+
+			var canvas = d3.select(".bar").append("svg")
+				.attr("class", "barchart")
+			    .attr("width", width + margins.left + margins.right)
+			    .attr("height", height + margins.top + margins.bottom)
+			    .append("g")
+			    .attr("class", "bars")
+			    .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
+
+			canvas.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0, " + height + ")")
+				.call(xAxis)
+
+			canvas.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+
+			var bar = canvas.selectAll("g.bars")
+	            .data(max_data)
+	            .enter()
+	            .append("g");
+
+	        bar.append("rect")
+				.attr("x", function(d) { return x(d.origin); })
+				.attr("y", function(d) { return y(d.number); })
+				.attr("height", function(d) {return height - y(d.number); })
+				.attr("width", barWidth - barSpace)
+				.attr("fill", "#feb24c")
+				.call(tip)
+				.on("mouseover", tip.show)
+				.on("mouseout", tip.hide);
 		})
 
 	// update the maps everytime the slider is moved for value of slider
 	var slider = document.getElementById("slider")
 	slider.addEventListener("mousemove", function() {
-		var cur_year = slider.value;
+		cur_year = slider.value;
 
 		// update map according to the current year on slider
 		updateMap(cur_year, migrants);
-
+		console.log(cur_year)
 
 	});
 };
