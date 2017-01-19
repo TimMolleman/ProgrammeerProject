@@ -30,3 +30,9 @@
 - Ik was ziek dus heb niet veel kunnen doen.
 - Wel barchart weten te laten verschijnen wanneer er op een land geklikt wordt met info over de 5 meeste landen waar vluchtelingen vandaan kwamen voor het land waarop geklikt is. Tot nu toe alleen voor 1 jaar gelukt.
 - Morgen zorgen dat dit mogelijk is voor elk jaar in de dataset.
+
+# day 8
+- Het is nu mogelijk om bij elk jaar op de slider op het land te klikken wat je wilt, waarna er een barchart verschijnt met info over het land voor het gegeven jaar. De barchart verandert vervolgens ook mee wanneer de slider verschoven wordt. Basisfunctionaliteit van de barchart is dus aanwezig.
+- refstreams.json omgevormd zodat deze beter gebruikt kan worden voor het maken van lijngrafiek.
+- Opzet gemaakt voor likjngrafiek. Hierin komt een lijn te staan voor iedere vluchtelingenroute. Deze lijnen geven weer in welke mate het gebruik van deze routes is toe/afgenomen in de jaren 2006-2015).
+- Morgen proberen lijngrafiek af te maken. Wanneer tijd over: cirkeles voor vluchtelingenroutes toevoegen aan datamap.
