@@ -87,13 +87,11 @@ h2 {
 .bar {
 	/*float: left;*/
 }
-.line img {
-	display: block;
-	width: 40%;
-	margin: 0 auto;
-}
 .line {
 	/*float: right;*/
+}
+.line:hover {
+	width: 20px;
 }
 .popup
 {

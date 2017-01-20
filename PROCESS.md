@@ -34,5 +34,19 @@
 # day 8
 - Het is nu mogelijk om bij elk jaar op de slider op het land te klikken wat je wilt, waarna er een barchart verschijnt met info over het land voor het gegeven jaar. De barchart verandert vervolgens ook mee wanneer de slider verschoven wordt. Basisfunctionaliteit van de barchart is dus aanwezig.
 - refstreams.json omgevormd zodat deze beter gebruikt kan worden voor het maken van lijngrafiek.
-- Opzet gemaakt voor likjngrafiek. Hierin komt een lijn te staan voor iedere vluchtelingenroute. Deze lijnen geven weer in welke mate het gebruik van deze routes is toe/afgenomen in de jaren 2006-2015).
+- Opzet gemaakt voor lijngrafiek. Hierin komt een lijn te staan voor iedere vluchtelingenroute. Deze lijnen geven weer in welke mate het gebruik van deze routes is toe/afgenomen in de jaren 2006-2015).
 - Morgen proberen lijngrafiek af te maken. Wanneer tijd over: cirkeles voor vluchtelingenroutes toevoegen aan datamap.
+
+# day 9 (20 januari 2017)
+- Lijnen toegevoegd aan de lijngrafiek voor iedere vluchtelingenroute. Essentie van lijngrafiek dus aan voldaan.
+- Stippen toegevoegd aan datamap die gebaseerd zijn op de vluchtelingenroutes.
+- Morgen vooral werken aan structuur van folders en files die behoren tot de website. Voor de rest denk ik kleine dingetjes opknappen (wellicht al verder met lijngrafiek en stippen op kaart)
+
+# day 10 (21 januari 2017)
+- Structuur aangebracht in mijn folders en files. 
+- Javascript functies die veel met elkaar te maken hebben bij elkaar in js-files geplaatst. Hierdoor
+is de code voor mij nu een stuk overzichtelijker (immers, niet alles meer in één js-file).
+- Veel comments toegevoegd bij de code waar dit nodig was.
+
+
+
