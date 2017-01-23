@@ -48,5 +48,15 @@
 is de code voor mij nu een stuk overzichtelijker (immers, niet alles meer in één js-file).
 - Veel comments toegevoegd bij de code waar dit nodig was.
 
+# weekend
+- Vooral gekeken naar alternatieve manier hoe ik mijn visualisaties wil binden. Ik wil nu dat wanneer een gebruiker op een vluchtelingenroute klikt (aangegeven met cirkels), dat er een lijngrafiek verschijnt naast de barchart die een lijn laat zien hoeveel het gebruik van deze vluchtelingenroute is toegenomen door de jaren heen.
+
+# day 11 (23 januari 2017)
+- Geslaagd om cirkels te implementeren in de datamap die de vluchtelingenroutes richting Europa aangeven. Eerst wilde ik dat deze cirkels een maximale radius van 30 pixels zouden hebben. De radius - dus de grootte van de cirkel - zou worden bepaald door het aantal vluchtelingen dat een route nam in een gegeven jaar. Om dit te bereiken deelde ik de grootste waarde in de refstreams data (885386) door 29513. Hierdoor was de grootste cirkel namelijk om en nabij 30px in radius. Echter bleek dat veel cirkels niet gezien konden worden omdat ze extreem kleine waardes hadden ten opzichte van deze grootste waarde. Ik heb daarom gekozen om vaste ranges aan vluchtelingenaantallen die een route namen vast te stellen om de grootte van de cirkels te bepalen. Dit werkt nu goed.
+- Hiernaast een toggle-button geïmplementeerd waarmee de cirkels 'aan' en 'uit' gezet kunnen worden. Het is namelijk zo dat de kaart onoverzichtelijk kan worden voor gebruikers die slechts geïnteresseerd zijn in het aantal vluchtelingen dat landen heeft bereikt in bepaalde jaren, wanneer er ook nog cirkels zijn die informatie geven over de vluchtelingenstromen.
+- Bug gefixt die er voorheen voor zorgde dat wanneer er een land werd aangeklikt waar geen data over bekend was met betrekking tot vluchtelingen, de barchart niet meer meer update aan de hand van de slider. Nu blijft het land gelijk aan het land waarvan de barchart al gemaakt was en update deze wanneer de slider bewogen wordt naar een ander jaar.
+- Begin gemaakt aan het omvormen van mijn lijngrafiek. De reden dat ik slechts één lijn in de grafiek wil is dat de grafiek ongelofelijk lelijk en onoverzichtelijk was doordat er 8 lijnen doorheen liepen. Hiernaast zorgde de grootste waarde (885386) ervoor dat de maximale waarde op de y-as heel hoog was, terwijl de meeste vluchtelingenroutes slechts door een aanzienlijk kleiner aantal mensen gebruikt werden (de meesten kwamen niet boven de 50000 uit). Dit maakte de onderkant van de grafiek al helemaal onoverzichelijk. Het lijkt mij dus beter dat mensen kunnen kiezen welke route zij willen bekijken in de grafiek. Dit is een stuk overzichtelijker.
+- Morgen verder met het omvormen van lijngrafiek. Hiernaast een bug fixen die ervoor zorgt dat Italië ingekleurd blijft in de jaren 2006-2008, terwijl er helemaal geen informatie is over die land in deze jaren. Ook de barchart heeft hier onder te lijden.
+
 
 

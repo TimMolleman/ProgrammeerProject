@@ -9,21 +9,6 @@
  * NOTE: data.js needs to be loaded for the below functions to work
  */
 
-/* Safe data for a country that was clicked on in a variable and return */
-function findCountry(current_data) {
-	var country_data;
-
-	// loop until the right country is found and safe into variable
-	for (i = 0; i < current_data.countries.length; i++)
-	{
-		if (current_data.countries[i].code == cur_country)
-		{
-			country_data = current_data.countries[i];
-		}
-	}
-	return country_data;
-};
-
 /* 
  * Function requires a dataset that was created with the 'findCountry' function.
  * It returns an array with 5 objects. These are the 5 countries where most
@@ -68,7 +53,7 @@ function storeRefugees(country_data) {
 			{
 				country_data.refugees[j].number = Number(country_data.refugees[j].number)
 				max_data.push(country_data.refugees[j]);
-				break;
+				// break;
 			}
 		}
 	return max_data;
@@ -78,24 +63,31 @@ function storeRefugees(country_data) {
 function createBarchart(year, migrants) {
 	// safe the right data in max_data variable
 	var cur_data = currentData(year, migrants),
-		country_data = findCountry(cur_data),
+		country_data = findCountry(cur_data, cur_country),
 		max_data = storeRefugees(country_data);
 
+	if (country_data == undefined)
+	{	
+		var hoi = document.getElementsByClassName("bars")
+		console.log(hoi);
+		return 1;
+	}
+
 	// define margins of barchart
-	var margins = {top: 50, bottom: 40, left: 55, right : 0};
+	var margins = {top: 50, bottom: 70, left: 70, right : 0};
 
 	// define the desired width of bars and desired space between bars
-	var barWidth = 55;
-	var barSpace = 20;
+	var barWidth = 65;
+	var barSpace = 30;
 
 	// define the width and height of the svg element
 	var width = (barWidth + barSpace) * max_data.length - margins.left - margins.right,
-		height = 500 - margins.top - margins.bottom;
+		height = 550 - margins.top - margins.bottom;
 
 	// scale the x-variable ordinally with top 5 countries where refugees come from
 	var x = d3.scale.ordinal()
 		.domain(max_data.map( function(d) {return d.origin; }))
-		.rangeRoundBands([0, width], 0.1);
+		.rangeRoundBands([0, width], 0.52);
 
 	// create x-axis
 	var xAxis = d3.svg.axis()
@@ -104,7 +96,7 @@ function createBarchart(year, migrants) {
 
 	// get the minimum and maximum values of barchart
 	var y_bounds = d3.extent(max_data, function(d) { return d.number });
-	y_bounds[0] = y_bounds[0] * 0.9;
+	y_bounds[0] = y_bounds[0] * 0.85;
 	y_bounds[1] = y_bounds[1] * 1.05;
 
 	// scale y-variable linearly
@@ -119,10 +111,10 @@ function createBarchart(year, migrants) {
 
 	// create tooltip element for when barchar is hovered over
 	var tip = d3.tip()
-	.attr("class", "d3tip")
+	.attr("class", "d3tip bars")
 	.offset([-10, 0])
 	.html(function(d) { return "<strong>" + d.origin + ":</strong> <span style='color:red'>" 
-		+ d.number + "</span>"; });
+		+ numberWithCommas(d.number) + "</span>"; });
 
 	// remove the current barchart from the page (if there is one)
 	d3.select('.barchart').remove();
@@ -134,19 +126,35 @@ function createBarchart(year, migrants) {
 	    .attr("width", width + margins.left + margins.right)
 	    .attr("height", height + margins.top + margins.bottom)
 	    .append("g")
-	    .attr("class", "bars")
+	    .attr("class", "bars " + cur_country)
 	    .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
+
+	// add title to the graph
+	canvas.append("text")
+			.attr("y", -10)
+			.attr("x", 20)
+			.text("Top 5 countries of refugee origins for " + cur_country_name + 
+				" (" + cur_year + ")");
 
 	// add x-axis to canvas
 	canvas.append("g")
 		.attr("class", "x axis")
 		.attr("transform", "translate(0, " + height + ")")
 		.call(xAxis)
+		.append("text")
+		.text("Origin")
+		.attr("y", +50)
+		.attr("x", +200);
 
 	// add y-axis to canvas
 	canvas.append("g")
 	.attr("class", "y axis")
 	.call(yAxis)
+	.append("text")
+	.text("Number of Refugees")
+	.attr("x", -260)
+	.attr("y", -55)
+	.attr("transform", "rotate(270)")
 
 	// add g-element for every datapoint in max_data 
 	var bar = canvas.selectAll("g.bars")
@@ -156,16 +164,23 @@ function createBarchart(year, migrants) {
 
 	// add a bar to every g-element in variable 'bar'
 	bar.append("rect")
-		.attr("fill", "#feb24c")
+		.attr("fill",  "#e31a1c")
+		.style("opacity", "0.6")
 		.attr("width", barWidth - barSpace)
+		.attr("height", "0")
 		.attr("x", function(d) { return x(d.origin); })
+		.attr("y", function(d) { return height; })
+		.transition()
+		.delay(function (d,i){ return i * 150;})
+		.duration(600)
+		.style("opacity", "1.0")
+		.attr("fill", "#feb24c")
 		.attr("y", function(d) { return y(d.number); })
 		.attr("height", function(d) { return height - y(d.number); })
-
-		bar
-		.call(tip)
-		.on("mouseover", tip.show)
-		.on("mouseout", tip.hide);		
+		
+	bar.call(tip)
+	.on("mouseover", tip.show)
+	.on("mouseout", tip.hide);
 };
 
 

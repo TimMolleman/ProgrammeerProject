@@ -1,16 +1,15 @@
 // queue the json-files so they can be loaded in later
 d3.queue()
-  .defer(d3.json, "../data/migrants.json")
+  .defer(d3.json, "../data/migrants2.json")
   .defer(d3.json, "../data/refstreams.json")
   .await(analyze);
 
 // define global variables
 var cur_year,
 	cur_country,
-	map;
-
-function drawCircles(refstreams) {
-}
+	cur_country_name,
+	map
+	button_toggle = 1;	
 
 // load in the json-files when ready. If there is an error, log error
 function analyze(error, migrants, refstreams) {
@@ -18,9 +17,7 @@ function analyze(error, migrants, refstreams) {
 		console.log(error);
 	}
 
-	console.log(migrants);
-
-	// get the year that corresponds to slide-bar's initial position
+	// safe the year that corresponds to slide-bar's initial position
 	var init_slide = document.getElementById('slider');
 	cur_year = init_slide.value;
 
@@ -29,14 +26,19 @@ function analyze(error, migrants, refstreams) {
 
 	// initial barchart country (Germany)
 	cur_country = 'DEU'
+	cur_country_name = "Germany"
 
-	// initialize default country (Germany) for barchart
+	// initialize default barchart (for Germany (2011))
 	createBarchart(cur_year, migrants);
+
+	// draw circles for the initial year (2011)
+	drawCircles(refstreams);
 
 	// update the map everytime the slider is moved for year on slider
 	var slider = document.getElementById("slider")
-	slider.addEventListener("mousemove", function() {
 
+	// update map and the barchart when slider is changed/moved
+	slider.addEventListener("change", function() {
 		cur_year = slider.value;
 
 		// update barchart for value on the slider 
@@ -44,75 +46,51 @@ function analyze(error, migrants, refstreams) {
 
 		// update map according to the current year on slider
 		updateMap(cur_year, migrants);
-	});
-	
 
+		if (button_toggle == 1) 
+		{
+			// draw dots on te map for immigrant routes
+			drawCircles(refstreams);
+		}
+	});
+
+	// create barchart for country that is clicked on in map (for year on slider)
 	map.svg.selectAll('.datamaps-subunit')
 		.on('click', function(geography) {
-			cur_country = geography.id;
-			createBarchart(cur_year, migrants);
+			// safe current data in a variable
+			var click_data = currentData(cur_year, migrants)
+
+			// create new barchart if there is data available for country
+			if (findCountry(click_data, geography.id) != undefined)
+			{
+				cur_country = geography.id;
+				cur_country_name = geography.properties.name;
+
+				createBarchart(cur_year, migrants);
+			};
 		}); 
 
-	createLine(refstreams);
+	createLine2(refstreams);
 
-	d3.select(".datamap").append("circle")
-		.attr("cx", 230)
-		.attr("cy", 372)
-		.attr("r", "5px")
-		.attr("class", "WestMedi")
-		.style("fill", "red")
-		.style("opacity", 0.8)
 
-	var coordinates = [ {"route": "Central Mediterranean route", "coordinates": [{"x": 365, "y": 370}]},
-						{"route": "Circular Albania Greece route", "coordinates": [{"x": 436, "y": 370}]},
-						{"route": "Western Balkan route", "coordinates": [{"x": 430, "y": 284}]},
-						{"route": "Eastern Borders route", "coordinates": [{"x": 475, "y": 240}]},
-						{"route": "Eastern Mediterranean route", "coordinates": [{"x":480, "y": 340}]}];
+	function clickButton() {
+	d3.select("button")
+		.on("click", function() {
+			if (button_toggle == 1)
+			{	
+				eraseCircles()
+				button_toggle = 0;
+			}
+			else
+			{	
+				drawCircles(refstreams);
+				button_toggle = 1;
+			}
+		});
+	};
 
-	console.log(coordinates);
-
-	d3.select(".datamap").append("circle")
-		.attr("cx", 365)
-		.attr("cy", 370)
-		.attr("r", "5px")
-		.attr("class", "CentMedi")
-		.style("fill", "red")
-		.style("opacity", .8)
-
-	d3.select(".datamap").append("circle")
-		.attr("cx", 436)
-		.attr("cy", 337)
-		.attr("r", "5px")
-		.attr("class", "AlbGreece")
-		.style("fill", "red")
-		.style("opacity", .8)
-
-	d3.select(".datamap").append("circle")
-		.attr("cx", 430)
-		.attr("cy", 284)
-		.attr("r", "5px")
-		.attr("class", "WestBalkan")
-		.style("fill", "red")
-		.style("opacity", .8)
-
-	d3.select(".datamap").append("circle")
-		.attr("cx", 475)
-		.attr("cy", 240)
-		.attr("r", "5px")
-		.attr("class", "EastBorders")
-		.style("fill", "red")
-		.style("opacity", .8)
-
-	d3.select(".datamap").append("circle")
-		.attr("cx", 480)
-		.attr("cy", 340)
-		.attr("r", "5px")
-		.attr("class", "EastMedi")
-		.style("fill", "red")
-		.style("opacity", .8)
-
+	clickButton()
 }
-
 
 
 

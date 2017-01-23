@@ -10,6 +10,23 @@
  * NOTE: data.js has to be loaded first
  */
 
+/* Safe data for a country that was clicked on in a variable and return. It should be used
+ * on the 'migrants' array.
+ */
+function findCountry(current_data, current_country) {
+	var country_data;
+
+	// loop until the right country is found and safe in variable
+	for (i = 0; i < current_data.countries.length; i++)
+	{
+		if (current_data.countries[i].code == current_country)
+		{
+			country_data = current_data.countries[i];
+		}
+	}
+	return country_data;
+};
+
 /* 
  * This function is used for determining the fillkey for a given country. 'Total' is the total 
  * amount of refugees that entered a country in a given year 
@@ -40,6 +57,41 @@ function getFillKey(total) {
 	    color = "> 60";
 	}
 	return color;
+};
+
+/* This function is used to determine the radius of refugee stream
+ * circles on the datamap. A range of radiuses is defined based on
+ * the number of refugees that used a route.
+ */
+function getRadius(refugee_count) {
+	if (refugee_count < 1000)
+	{
+	    return 3 + "px"
+	}
+	else if (refugee_count >= 1000 && refugee_count < 5000)
+	{
+	    return 4 + "px"
+	}
+	else if (refugee_count >= 5000 && refugee_count < 30000)
+	{
+	    return 7 + "px"
+	}
+	else if (refugee_count >= 30000 && refugee_count < 50000)
+	{
+	    return 12 + "px"
+	}
+	else if (refugee_count >= 50000 && refugee_count < 100000)
+	{
+	    return 16 + "px"
+	}
+	else if (refugee_count >= 100000 && refugee_count < 500000)
+	{
+	    return 22 + "px"
+	}
+	else 
+	{
+		return 32 + "px"
+	}
 };
 
 /* Function returns data in 'migrants' dataset for a given year */
@@ -86,40 +138,69 @@ function createFillData(current_data) {
 
 /* 
  * This function transforms the refstreams dataset to a second dataset. This
- * second dataset is used to draw the linegraph 
+ * second dataset is used to draw the linegraph and is used to draw the circles for
+ * migration routes on the map.
  */ 
 function transformRefstreams(refstreams)
 {
 	var data = []
 
-	// transform dataset so that it can be used to create lines on graph
+	var coordinates = [ {"route": "Western African route", "cors": {"x":110, "y": 480}},
+				{"route": "Western Mediterranean route", "cors": {"x":230, "y": 372}},
+				{"route": "Central Mediterranean route", "cors": {"x": 365, "y": 370}},
+				{"route": "Apulia and Calabria route", "cors": {"x": 365, "y": 370}},
+				{"route": "Circular Albania Greece route", "cors": {"x": 436, "y": 370}},
+				{"route": "Western Balkan route", "cors": {"x": 430, "y": 284}},
+				{"route": "Eastern Mediterranean route", "cors": {"x":480, "y": 340}},
+				{"route": "Eastern Borders route", "cors": {"x": 475, "y": 240}}
+				];
+
+	// loop over each object in refstreams data (sorted by years)
 	for (i = 0; i < refstreams.length; i++)
 	{
+		// loop over all the routes that are in current year
 		for (j = 0; j < refstreams[i].routes.length; j++)
-		{
+		{	
+			// safe current route in a variable and also the corresponding number of refugees
+			var cur_route = refstreams[i].routes[j].route,
+				cur_number = refstreams[i].routes[j].number,
+				cor_data;
+
+			// find the right coördinates for circle on map and safe them
+			for (l = 0; l < coordinates.length; l++)
+			{
+				if (coordinates[l].route == cur_route)
+				{
+					cor_data = coordinates[l].cors;
+				}
+			}
+
+			// add routes as objects to 'data'. 'data' dataset is sorted by routes
 			if (i == 0)
 			{
-				if (refstreams[i].routes[j].route != "Totals")
+				if (cur_route != "Totals")
 				{
-					if (refstreams[i].routes[j].number != "N/A")
+					if (cur_number != "N/A")
 					{
-						data.push({"route": refstreams[i].routes[j].route, "years": [{"year": refstreams[i].year, "number": Number(refstreams[i].routes[j].number)}]});
+						data.push({"route": cur_route, "coordinates": cor_data,
+							"years": [{"year": refstreams[i].year, "number": Number(cur_number)}]});
 					}
 					else
 					{
-						data.push({"route": refstreams[i].routes[j].route, "years": []});
+						data.push({"route": cur_route, "coordinates": cor_data, "years": []});
 					}
 				}
 			}
 			else 
 			{
+				// if route already in 'data': Add year and number of refugees to route object
 				for (k = 0; k < data.length; k++)
 				{
-					if (refstreams[i].routes[j].route == data[k].route)
+					if (cur_route == data[k].route)
 					{
-						if (refstreams[i].routes[j].number != "N/A" && refstreams[i].routes[j].route != "Totals")
+						if (cur_number != "N/A" && cur_route != "Totals")
 						{
-							data[k].years.push({"year": refstreams[i].year, "number": Number(refstreams[i].routes[j].number)});
+							data[k].years.push({"year": refstreams[i].year, "number": Number(cur_number)});
 						}
 					}
 				}	

@@ -84,11 +84,14 @@ h2 {
 .slider {
 	width: 40%;
 }
-.bar {
-	/*float: left;*/
+.graphcontainer {
+	padding: 40px;
+
 }
-.line {
-	/*float: right;*/
+.bar, .line {
+	/*float: left;*/
+	display: inline-block;
+	padding: 20px;
 }
 .line:hover {
 	width: 20px;
@@ -124,4 +127,8 @@ h2 {
 .x.axis path
 {
 	/*display: none;*/
+}
+rect:hover {
+	fill: #e31a1c;
+	opacity: 0.80;
 }
