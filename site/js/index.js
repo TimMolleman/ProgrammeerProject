@@ -69,27 +69,27 @@ function analyze(error, migrants, refstreams) {
 				createBarchart(cur_year, migrants);
 			};
 		}); 
-
-	createLine2(refstreams);
-
-
+	
+	/* Function that either removes or adds migrant routes circles */
 	function clickButton() {
-	d3.select("button")
-		.on("click", function() {
-			if (button_toggle == 1)
-			{	
-				eraseCircles()
-				button_toggle = 0;
-			}
-			else
-			{	
-				drawCircles(refstreams);
-				button_toggle = 1;
-			}
-		});
+		d3.select("button")
+			.on("click", function() {
+				if (button_toggle == 1)
+				{	
+					eraseCircles()
+					removeLineGraph()
+					button_toggle = 0;
+				}
+				else
+				{	
+					drawCircles(refstreams);
+					button_toggle = 1;
+				}
+			});
 	};
 
 	clickButton()
+
 }
 
 

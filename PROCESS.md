@@ -58,5 +58,8 @@ is de code voor mij nu een stuk overzichtelijker (immers, niet alles meer in é�
 - Begin gemaakt aan het omvormen van mijn lijngrafiek. De reden dat ik slechts één lijn in de grafiek wil is dat de grafiek ongelofelijk lelijk en onoverzichtelijk was doordat er 8 lijnen doorheen liepen. Hiernaast zorgde de grootste waarde (885386) ervoor dat de maximale waarde op de y-as heel hoog was, terwijl de meeste vluchtelingenroutes slechts door een aanzienlijk kleiner aantal mensen gebruikt werden (de meesten kwamen niet boven de 50000 uit). Dit maakte de onderkant van de grafiek al helemaal onoverzichelijk. Het lijkt mij dus beter dat mensen kunnen kiezen welke route zij willen bekijken in de grafiek. Dit is een stuk overzichtelijker.
 - Morgen verder met het omvormen van lijngrafiek. Hiernaast een bug fixen die ervoor zorgt dat Italië ingekleurd blijft in de jaren 2006-2008, terwijl er helemaal geen informatie is over die land in deze jaren. Ook de barchart heeft hier onder te lijden.
 
+# day 12 (24 januari 2017)
+- Lijngrafiek omgevormd zodat er een lijngrafiek verschijnt wanneer er op een route geklikt wordt in de kaart. Wanneer de muis in de lijngrafiek is wordt de lijn dikker, verandert de kleur en verschijnt er een tooltip die data laat zien voor het dichtsbijzijnde datapunt op de lijn ten opzichte van de muis. Ook de cirkel verandert van kleur waardoor de gebruiker kan zien over welke cirkel de lijngrafiek informatie geeft.
+- Bug met Italië nog niet gefixt. Ik wil eerst nog de laatste puntjes op de visualizaties zetten. Morgen zorgen dat er een tooltip met info verschijnt in de lijngrafiek wanneer de jaarslider verschoven wordt. Ook nog wat dingen bij de barchart fixen.
 
 

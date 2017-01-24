@@ -88,9 +88,13 @@ h2 {
 	padding: 40px;
 
 }
+.bar {
+	overflow: scroll;
+	width: 500px;
+}
 .bar, .line {
 	/*float: left;*/
-	display: inline-block;
+	/*display: inline-block;*/
 	padding: 20px;
 }
 .line:hover {
@@ -132,3 +136,4 @@ rect:hover {
 	fill: #e31a1c;
 	opacity: 0.80;
 }
+

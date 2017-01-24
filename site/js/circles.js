@@ -54,11 +54,17 @@ function drawCircles(refstreams) {
 						.attr("class", "d3tip routes")
 						.html(function() { return "<strong>" + route + "</strong><br><strong>Illegal crossings: </strong><span style='color:red'>" + numberWithCommas(number) + "</span>"; });
 		
-
+			/* Creates linegraph for the route that was clicked on in map */
 			function clickFunction() {
-					var clsName = d3.select(this)[0][0].className.baseVal;
-					
-				}
+				// get the classname (route) of circle that is clicked on
+				var clsName = d3.select(this)[0][0].className.baseVal;
+
+				// delete linegraph on screen if one is already there 
+				d3.select(".linegraph").remove();
+
+				// create new linegraph for the route that was clicked on in map
+				createLine2(refstreams, clsName);
+			};
 
 			// append circle to the .routes element
 			d3.select(".routes").append("circle")

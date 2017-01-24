@@ -10,7 +10,8 @@
  * NOTE: data.js has to be loaded first
  */
 
-/* Safe data for a country that was clicked on in a variable and return. It should be used
+/* 
+ * Safe data for a country that was clicked on in a variable and return. It should be used
  * on the 'migrants' array.
  */
 function findCountry(current_data, current_country) {
@@ -27,9 +28,20 @@ function findCountry(current_data, current_country) {
 	return country_data;
 };
 
+/* Function finds route that is clicked on in the datamap. */
+function findRoute(refstreams, current_route) {
+	for (i = 0; i < refstreams.length; i++) 
+	{
+		if (refstreams[i].route == current_route)
+		{
+			return refstreams[i];
+		}
+	}
+};
+
 /* 
  * This function is used for determining the fillkey for a given country. 'Total' is the total 
- * amount of refugees that entered a country in a given year 
+ * amount of refugees that entered a country in a given year.
  */
 function getFillKey(total) {
 	if (total < 1000)
@@ -59,7 +71,8 @@ function getFillKey(total) {
 	return color;
 };
 
-/* This function is used to determine the radius of refugee stream
+/* 
+ * This function is used to determine the radius of refugee stream
  * circles on the datamap. A range of radiuses is defined based on
  * the number of refugees that used a route.
  */
@@ -149,7 +162,7 @@ function transformRefstreams(refstreams)
 				{"route": "Western Mediterranean route", "cors": {"x":230, "y": 372}},
 				{"route": "Central Mediterranean route", "cors": {"x": 365, "y": 370}},
 				{"route": "Apulia and Calabria route", "cors": {"x": 365, "y": 370}},
-				{"route": "Circular Albania Greece route", "cors": {"x": 436, "y": 370}},
+				{"route": "Circular Albania Greece route", "cors": {"x": 436, "y": 335}},
 				{"route": "Western Balkan route", "cors": {"x": 430, "y": 284}},
 				{"route": "Eastern Mediterranean route", "cors": {"x":480, "y": 340}},
 				{"route": "Eastern Borders route", "cors": {"x": 475, "y": 240}}
