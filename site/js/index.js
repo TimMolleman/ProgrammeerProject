@@ -8,7 +8,7 @@ d3.queue()
 var cur_year,
 	cur_country,
 	cur_country_name,
-	map
+	map,
 	button_toggle = 1;	
 
 // load in the json-files when ready. If there is an error, log error
@@ -29,7 +29,7 @@ function analyze(error, migrants, refstreams) {
 	cur_country_name = "Germany"
 
 	// initialize default barchart (for Germany (2011))
-	createBarchart(cur_year, migrants);
+	// createBarchart(cur_year, migrants);
 
 	// draw circles for the initial year (2011)
 	drawCircles(refstreams);
@@ -42,7 +42,7 @@ function analyze(error, migrants, refstreams) {
 		cur_year = slider.value;
 
 		// update barchart for value on the slider 
-		createBarchart(cur_year, migrants);
+		// createBarchart(cur_year, migrants);
 
 		// update map according to the current year on slider
 		updateMap(cur_year, migrants);
@@ -52,23 +52,28 @@ function analyze(error, migrants, refstreams) {
 			// draw dots on te map for immigrant routes
 			drawCircles(refstreams);
 		}
+
+		if (years != undefined)
+		{
+			dotLine();
+		}	
 	});
 
 	// create barchart for country that is clicked on in map (for year on slider)
-	map.svg.selectAll('.datamaps-subunit')
-		.on('click', function(geography) {
-			// safe current data in a variable
-			var click_data = currentData(cur_year, migrants)
+	// map.svg.selectAll('.datamaps-subunit')
+	// 	.on('click', function(geography) {
+	// 		// safe current data in a variable
+	// 		var click_data = currentData(cur_year, migrants)
 
-			// create new barchart if there is data available for country
-			if (findCountry(click_data, geography.id) != undefined)
-			{
-				cur_country = geography.id;
-				cur_country_name = geography.properties.name;
+	// 		// create new barchart if there is data available for country
+	// 		if (findCountry(click_data, geography.id) != undefined)
+	// 		{
+	// 			cur_country = geography.id;
+	// 			cur_country_name = geography.properties.name;
 
-				createBarchart(cur_year, migrants);
-			};
-		}); 
+	// 			createBarchart(cur_year, migrants);
+	// 		};
+	// 	}); 
 	
 	/* Function that either removes or adds migrant routes circles */
 	function clickButton() {

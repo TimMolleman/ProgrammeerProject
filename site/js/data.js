@@ -226,6 +226,6 @@ function transformRefstreams(refstreams)
 /* Function that returns an integers with commas after every 3 numbers */
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+};
 
  

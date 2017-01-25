@@ -170,6 +170,18 @@ function createBarchart(year, migrants) {
 		.attr("height", "0")
 		.attr("x", function(d) { return x(d.origin); })
 		.attr("y", function(d) { return height; })
+		.on("mouseover", function() {
+			d3.select(this)
+				.transition().duration(500)
+				.attr("fill", "#e31a1c")
+				.style("opacity", 0.8)
+		})
+		.on("mouseout", function() {
+			d3.select(this)
+				.transition().duration(700)
+				.attr("fill", "#feb24c")
+				.style("opacity", 1.0)
+		})
 		.transition()
 		.delay(function (d,i){ return i * 150;})
 		.duration(600)
@@ -177,7 +189,8 @@ function createBarchart(year, migrants) {
 		.attr("fill", "#feb24c")
 		.attr("y", function(d) { return y(d.number); })
 		.attr("height", function(d) { return height - y(d.number); })
-		
+	
+	// call tooltip on bars
 	bar.call(tip)
 	.on("mouseover", tip.show)
 	.on("mouseout", tip.hide);

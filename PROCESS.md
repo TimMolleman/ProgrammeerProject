@@ -60,6 +60,10 @@ is de code voor mij nu een stuk overzichtelijker (immers, niet alles meer in é�
 
 # day 12 (24 januari 2017)
 - Lijngrafiek omgevormd zodat er een lijngrafiek verschijnt wanneer er op een route geklikt wordt in de kaart. Wanneer de muis in de lijngrafiek is wordt de lijn dikker, verandert de kleur en verschijnt er een tooltip die data laat zien voor het dichtsbijzijnde datapunt op de lijn ten opzichte van de muis. Ook de cirkel verandert van kleur waardoor de gebruiker kan zien over welke cirkel de lijngrafiek informatie geeft.
-- Bug met Italië nog niet gefixt. Ik wil eerst nog de laatste puntjes op de visualizaties zetten. Morgen zorgen dat er een tooltip met info verschijnt in de lijngrafiek wanneer de jaarslider verschoven wordt. Ook nog wat dingen bij de barchart fixen.
+- Bug met Italië nog niet gefixt. Ik wil eerst nog de laatste puntjes op de visualisaties zetten. Morgen zorgen dat er een tooltip met info verschijnt in de lijngrafiek wanneer de jaarslider verschoven wordt. Ook nog wat dingen bij de barchart fixen.
+
+# day 13 (25 januari 2017)
+- Laatste puntjes op visualisaties gezet. Er verschijnt nu linksbovenin bij de linechart informatie over het huidige jaar en het aantal vluchtelingen dat de route genomen heeft. Dit gebeurt zowel wanneer de gebruiker de tooltip in de lijngrafiek met zijn muis beweegt, als wanneer deze de time slider aanpast. Hiernaast is er nu ook een crosshair in de lijngrafiek. Ook licht de route die de gebruiker op het moment geselecteerd heeft kort op wanneer deze de slider beweegt: Hierdoor heeft de gebruiker een reminder die hem/haar eraan herinnert welke route er gekozen is (en dus in de lijngrafiek staat). Ook licht de route op wanneer een gebruiker zijn/haar muis over de lijngrafiek heeft.
+- Vanaf morgen vooral bugs fixen en de html en CSS in orde krijgen. Functionaliteit praktisch af.
 
 
