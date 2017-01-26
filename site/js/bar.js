@@ -59,19 +59,19 @@ function storeRefugees(country_data) {
 	return max_data;
 };
 
-/* Function that creates the actual barchart */
+/* Function that creates the barchart */
 function createBarchart(year, migrants) {
 	// safe the right data in max_data variable
 	var cur_data = currentData(year, migrants),
 		country_data = findCountry(cur_data, cur_country),
 		max_data = storeRefugees(country_data);
 
-	if (country_data == undefined)
-	{	
-		var hoi = document.getElementsByClassName("bars")
-		console.log(hoi);
-		return 1;
-	}
+	// if (country_data == undefined)
+	// {	
+	// 	var hoi = document.getElementsByClassName("bars")
+	// 	console.log(hoi);
+	// 	return 1;
+	// }
 
 	// define margins of barchart
 	var margins = {top: 50, bottom: 70, left: 70, right : 0};
@@ -138,7 +138,7 @@ function createBarchart(year, migrants) {
 
 	// add x-axis to canvas
 	canvas.append("g")
-		.attr("class", "x axis")
+		.attr("class", "x axis bar")
 		.attr("transform", "translate(0, " + height + ")")
 		.call(xAxis)
 		.append("text")
@@ -148,7 +148,7 @@ function createBarchart(year, migrants) {
 
 	// add y-axis to canvas
 	canvas.append("g")
-	.attr("class", "y axis")
+	.attr("class", "y axis bar")
 	.call(yAxis)
 	.append("text")
 	.text("Number of Refugees")
@@ -188,7 +188,7 @@ function createBarchart(year, migrants) {
 		.style("opacity", "1.0")
 		.attr("fill", "#feb24c")
 		.attr("y", function(d) { return y(d.number); })
-		.attr("height", function(d) { return height - y(d.number); })
+		.attr("height", function(d) { return height - y(d.number); });
 	
 	// call tooltip on bars
 	bar.call(tip)

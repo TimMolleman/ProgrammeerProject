@@ -11,8 +11,6 @@
 
 /* Function finds the right number of refugees and year for 'data' and returns */
 function findRouteNumber(data) {
-	var routes_data;
-
 	// loop through the data until right year is found and return values
 	for (i = 0; i < data.years.length; i++) 
 	{
@@ -89,17 +87,18 @@ function drawCircles(refstreams) {
 					.transition().delay(2200).duration(300)
 					.style("fill", "red")
 
+				// hide crosshairs 
+				d3.select(".focus").style("display", null)
+
 				// delete linegraph on screen if one is already there 
 				d3.select(".linegraph").remove();
 
-				d3.select(".focus").style("display", null)
+				// make linetoggle button appear 
+				d3.select("button.linetoggle").style("display", null)
 
 				// show the data values next to the dot
 			    d3.select(".lineinfo.year")
 			    	.text("Year: " + cur_year)
-			    
-			    // d3.select("text.lineinfo.number")
-			    // 	.text("Refugees: " + numberWithCommas(d.number))
 
 				// create new linegraph for the route that was clicked on in map
 				createLine2(refstreams);

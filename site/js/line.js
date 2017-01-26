@@ -15,10 +15,11 @@ var x_line,
 	format,
 	margins,
 	route_name,
-	years;
+	years,
+	xPos,
+	x;
 
-
-
+/* This function is used to create a linegraph that contains lines for all routes */
 function createLine(refstreams)
 {
 	// array that will be used to find min/max values in refstreams dataset
@@ -40,17 +41,17 @@ function createLine(refstreams)
 
 	// transform data so that it can be used to draw the linegraph
 	var data = transformRefstreams(refstreams);
-	console.log(data, "transformed refstreams");
 
 	// define margins of linegraph
-	var margins = {left: 60, right: 120, top: 40, bottom: 75},
+	margins = {left: 120, right: 120, top: 50, bottom: 75},
 			width = 700 - margins.left - margins.right,
 			height = 450 - margins.bottom - margins.top;
 
-	var format = d3.time.format("%Y");
+	// define function for transforming stringed year to Javascript time object
+	format = d3.time.format("%Y");
 
 	// scale the x-axis data
-	var x = d3.time.scale()
+	x = d3.time.scale()
 			.domain(d3.extent(refstreams, function(d) { return format.parse(d.year); }))
 			.range([0, width])
 
@@ -62,7 +63,7 @@ function createLine(refstreams)
 	// scale the y-axis data		
 	var y = d3.scale.linear()
 		.domain(d3.extent(values, function(d) { return d; }))
-		.range([height, 0])
+		.range([height, 0]);
 
 	// create the y-axis
 	var yAxis = d3.svg.axis()
@@ -77,11 +78,13 @@ function createLine(refstreams)
 	var line = d3.svg.line()
 				// .interpolate("basis")
 				.x(function(d) { return x(format.parse(d.year)); })
-				.y(function(d) { return y(d.number); })
+				.y(function(d) { return y(d.number); });
 
+	// create canvas to draw the linegraph on 
 	var canvas = d3.select(".line").append("svg")
 				.attr("width", width + margins.left + margins.right)
-				.attr("height", height + margins.bottom + margins.top),
+				.attr("height", height + margins.bottom + margins.top)
+				.attr("class", "linegraph"),
 			g = canvas.append("g")
 				.attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
@@ -90,31 +93,149 @@ function createLine(refstreams)
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis);
+	console.log(xAxis)
+	// add title to x-axis
+	// xAxis.append("text")
+	// 	.attr("class", "x label line")
+	// 	.text("Year")
+	// 	.attr("x", 220)
+	// 	.attr("y", 40);
 
 	// call the y-axis
 	g.append("g")
 		.attr("class", "y axis")
 		.call(yAxis);
 
+	// add title to y-axis
+	// yAxis.append("text")
+	// 	.attr("class", "y label line")
+	// 	.attr("x", -200)
+	// 	.attr("y", -70)
+	// 	.attr("transform", "rotate(270)")
+	// 	.text("Refugees")
+
+	// add title to the linegraph
+	canvas.append("text")
+			.attr("class", "title")
+			.attr("y", 20)
+			.attr("x", 120)
+			.text("Use of Migratory Routes to Europe by Refugees from 2006 to 2016");
+
 	// append lines to the graph
 	g.selectAll(".line")
 		.data(data)
 		.enter().append("path")
-		.attr("class", function(d) { return "line " + d.route; })
+		.attr("class", function(d) { return d.route; })
 		.attr("d", function(d) { return line(d.years); })
-		.style("stroke", function(d) { return z(d.route)})
-		.style("stroke-width", "2px")
+		.style("stroke", function(d) { return z(d.route); })
+		.style("stroke-width", "3px")
 		.style("fill", "none")
+		.style("opacity", 0.6)
 		.on("mouseover", function(d) {
+			// highlight line of route in  
 			d3.select(this)
-				.style("stroke-width", "7px")
+				.style("stroke-width", "4px")
+				.style("stroke", "orange")
+				.style("opacity", 0.7)
+
+			// highlight route circle in datamap
+			d3.select("circle." + d.route.split(' ').join('.'))
+				.style("fill", "orange")
+
+			// get the right route name when mouseover line
+			var class_route = d3.select(this)[0][0].className.baseVal;
+
+			// obtain the right refugee number for current year/route
+			var hover_route = findRoute(data, class_route)
+			var ref_data = findRouteNumber(hover_route);
+
+			// show route and number information in the linegraph
+			d3.select(".allroutes.route")
+				.text("Route: " + d.route);
+
+			// show refugees data if there is data available
+			if (ref_data != undefined)
+			{
+				d3.select(".allroutes.number")
+					.text("No. Refugees: " + numberWithCommas(ref_data[0]));
+			}
+			// else mention that there is no data known
+			else
+			{
+				d3.select(".allroutes.number")
+					.text("No. Refugees: Unknown");
+			}
 		})
 		.on("mouseout", function(d) {
 			d3.select(this)
-				.style("stroke-width", "2px")
+				.style("stroke-width", "3px")
+				.style("stroke", function() { return z(d.route); })
+				.style("opacity", 0.6)
+			
+			// change route circle color back to normal color
+			d3.select("circle." + d.route.split(' ').join('.'))
+				.style("fill", "red")
+
+			// delete route and number information
+			d3.select(".allroutes.route")
+				.text("")
+
+			d3.select(".allroutes.number")
+				.text("")
 		})
+		.on("click", function() {
+			// get routename of line
+			route_name = d3.select(this)[0][0].className.baseVal;
+
+			// delete curent linegraph
+			d3.select(".linegraph").remove();
+
+			// create linegraph of route that was clicked on
+			createLine2(refstreams);
+			
+			// hide the linetoggle button
+			d3.select("button.linetoggle").style("display", null)
+
+			// show tooltip at right position in linegraph
+			dotLine();
+		});
+
+	// append group element, used for showing trackline on change of slider
+	var trackline = canvas.append("g")
+					.attr("class", "trackline")
+
+	// append vertical line that tracks which year it is
+    trackline.append("line")
+	    .attr("class", "track")
+	    .style("stroke", "black")
+	    .style("stroke-dasharray", "4.5")
+	    .style("opacity", 0.0)
+	    .attr("y1", 0)
+	    .attr("y2", height);
+
+	// append text element that will show the year on slider move
+	trackline.append("text")
+		.attr("class", "allroutes year")
+		.attr("x", 130)
+		.attr("y", 70)
+		.style("font-size", "11.5px");
+
+	trackline.append("text")
+		.attr("class", "allroutes route")
+		.attr("x", 130)
+		.attr("y", 82)
+		.style("font-size", "11.5px");
+
+	trackline.append("text")
+		.attr("class", "allroutes number")
+		.attr("x", 130)
+		.attr("y", 94)
+		.style("font-size", "11.5px");
+
+	trackLine();	
 };
 
+/* This function is used to create linegraph for circle that is clicked on in datamap */
 function createLine2(refstreams)
 {
 	// array that will be used to find min/max values in refstreams dataset
@@ -137,15 +258,13 @@ function createLine2(refstreams)
 	var data = transformRefstreams(refstreams),
 		route_data = findRoute(data, route_name);
 
+	// safe information on years and refugee numbers in variable
 	years = route_data.years;
 
 	// define margins of linegraph
 	margins = {left: 120, right: 120, top: 50, bottom: 75},
 			line_width = 700 - margins.left - margins.right,
 			line_height = 450 - margins.bottom - margins.top;
-
-	// format function for transforming stringed years to Javascript time objects
-	format = d3.time.format("%Y");
 
 	// scale the x-axis data
 	x_line = d3.time.scale()
@@ -172,7 +291,7 @@ function createLine2(refstreams)
 				.x(function(d) { return x_line(format.parse(d.year)); })
 				.y(function(d) { return y_line(d.number); })
 
-
+	// append canvas to .line div element for the linegraph
 	var canvas = d3.select(".line").append("svg")
 				.attr("width", line_width + margins.left + margins.right)
 				.attr("height", line_height + margins.bottom + margins.top)
@@ -199,6 +318,7 @@ function createLine2(refstreams)
 		.attr("class", "y axis")
 		.call(yAxis);
 
+	// add title to y-axis
 	yAxis.append("text")
 		.attr("class", "y label line")
 		.attr("x", -200)
@@ -211,34 +331,31 @@ function createLine2(refstreams)
 			.attr("class", "title")
 			.attr("y", 20)
 			.attr("x", 120)
-			.text("Number of Refugees Coming Into Europe by " + route_name + " per Year");
+			.text("Number of Refugees Coming Into Europe by " + route_name);
 
 	// append line to the graph
 	g.append("path")
 		.datum(years)
 		.attr("class", route_name)
 		.attr("d", line)
+		.style("fill", "none")
 		.style("stroke", "orange")
 		.style("stroke-width", "4px")
 		.style("opacity", 0.5)
-		.transition().duration(1500)
-		.style("stroke", "red")
-		.style("fill", "none")
-		.style("stroke-width", "2px")
-		.style("opacity", 0.7)
 
 	// append "g" elements for dots that will track line
 	var focus = canvas.append("g")
 				.attr("class", "focus")
 				.style("display", "none");
 
-	// append 3 dots for min, max and mean temperatures
+	// append dot that will show at position determined by mouse position 
 	focus.append("circle")
 			.attr("class", "refnumber")
 			.style("r", "0px")
 			.style("fill", "red")
 			.style("stroke", "red");
 
+	// append two text elements to focus for showing data value in top-left corner
 	focus.append("text")
 			.attr("class", "lineinfo year")
 			.attr("x", 130)
@@ -338,10 +455,12 @@ function createLine2(refstreams)
 				.transition().duration(300)
 				.style("fill", "red")
 				.style("r", "0px");
+
+		dotLine();
 	};
 
    	/* 
-   	 * This function makes the pointer set to the data point closest
+   	 * This function makes the dot set to the data point closest
      * to the mouse and also shows the data that belongs to that data point. 
      */
     function mouseMove() {
@@ -362,26 +481,25 @@ function createLine2(refstreams)
 	            "translate(" + xPos + "," +  
 	                           yPos + ")"); 
 
-	    // show the data values next to the dot
+	    // show the data values in topleft corner of linegraph
 	    focus.select("text.lineinfo.year")
-	    	.text("Year: " + d.year)
+	    	.text("Year: " + d.year);
 	    
 	    focus.select("text.lineinfo.number")
-	    	.text("Refugees: " + numberWithCommas(d.number))
+	    	.text("No. Refugees: " + numberWithCommas(d.number));
 
 	    // change position of the crosshair
 	    focus.select(".verline")
 	    		.style("opacity", 0.5)
 			    .attr("transform",
 			            "translate(" + xPos + "," +
-			                            + margins.top + ")")
+			                            + margins.top + ")");
 
 		focus.select(".horline")
 				.style("opacity", 0.5)
 				.attr("transform",
 			            "translate(" + margins.left + "," +
-			                            + yPos + ")")
-
+			                            + yPos + ")");
     };
 };
 
@@ -398,137 +516,150 @@ function removeLineGraph() {
 /* 
  * This function shows a dot on the current linegraph for the value of cur_year.
  * The dot appears where the x-axis value corresponds to the cur_year value.
- * Function should be called when the slider value is changed.
+ * Function should be called when the slider value is changed. If the current
+ * graph shows all the route lines, a trackline will appear that shows which year
+ * the slider is currently on.
  */
 function dotLine() {
-
-	var line_data;
-
-	// find the routes data that corresponds to current year
-	for (i = 0; i < years.length; i++)
+	// show dot if there is information available for the year
+	if (years != undefined)
 	{
-		if (cur_year == years[i].year)
+		var line_data;
+
+		// find the routes data that corresponds to current year
+		for (i = 0; i < years.length; i++)
 		{
-			line_data = years[i]
+			if (cur_year == years[i].year)
+			{
+				line_data = years[i];
+			}
 		}
-	}
-	// remove the current .dotline circle
-	d3.select(".dotline").remove()
-	d3.selectAll(".focus2").remove()
+		// remove the current .dotline circle and .focus2
+		d3.select(".dotline").remove();
+		d3.selectAll(".focus2").remove();
 
-	// only show a dot on the line if there is data for route/cur_year
-	if (line_data != undefined)
-	{	
-		// append g element to linegraph canvas for the dot
-		var focus = d3.select(".linegraph").append("g")
-						.attr("class", "focus2");
+		// only show a dot on the line if there is data for route/cur_year
+		if (line_data != undefined && route_name != undefined)
+		{	
+			// append g element to linegraph canvas for the dot
+			var focus = d3.select(".linegraph").append("g")
+							.attr("class", "focus2");
 
-		// append text to focus for tooltip
-		focus.append("text")
-			.attr("class", "lineinfo2 year");
+			// append text to focus for data information
+			focus.append("text")
+				.attr("class", "lineinfo2 year");
 
-		focus.append("text")
-			.attr("class", "lineinfo2 number");
+			focus.append("text")
+				.attr("class", "lineinfo2 number");
 
-		// append vertical line for crosshair
-		focus.append("line")
-		    .attr("class", "verline2")
-		    .style("stroke", "black")
-		    .style("stroke-dasharray", "4.5")
-		    .style("opacity", 0.5)
-		    .attr("y1", 0)
-		    .attr("y2", line_height);
-
-		// append horizontal line for crosshair
-		  focus.append("line")
-		    .attr("class", "horline2")
-		    .style("stroke", "black")
-		    .style("stroke-dasharray", "4.5")
-		    .style("opacity", 0.5)
-		    .attr("x1", 0)
-		    .attr("x2", line_width);
-
-		// append circle to the linegraph. After a while, disappear
-		focus.append("circle")
-			.attr("class", "dotline")
-			.attr("cx", x_line(format.parse(line_data.year)) + margins.left)
-			.attr("cy", y_line(line_data.number) + margins.top)
-			.style("r", "0px")
-			.style("fill", "red")
-			.transition().duration(300)
-			.style("r", "6px")
-			.style("fill", "orange")
-			.transition().delay(2000).duration(600)
-			.style("fill", "red")
-			.style("r", "0px");
-
-		// also change path color of the linegraph. After a while, back to original color
-	 	d3.select("path." + route_name.split(' ').join('.'))
-  			.transition().duration(300)
-			.style("stroke-width", "4px")
-			.style("stroke", "orange")
-			.style("fill", "none")
-			.style("opacity", 0.5)
-			.transition().delay(2000).duration(600)
-			.style("stroke-width", "2px")
-			.style("stroke", "red")
-			.style("opacity", 0.7);
-
-		// also change color of route on the map
-		d3.select("circle." + route_name.split(' ').join('.'))
-				.style("fill", "orange");
-
-		var xPos = x_line(format.parse(line_data.year)) + margins.left,
-				yPos = y_line(line_data.number) + margins.top;
-
-		// change position of the crosshair
-	    d3.select(".verline2")
-	    		.style("opacity", 0)
-			    .attr("transform",
-			            "translate(" + xPos + "," 
-			                            + margins.top + ")")
-			    .transition().duration(300)
+			// append vertical line for crosshair
+			focus.append("line")
+			    .attr("class", "verline2")
+			    .style("stroke", "black")
+			    .style("stroke-dasharray", "4.5")
 			    .style("opacity", 0.5)
-			    .transition().delay(2000).duration(600)
-			    .style("opacity", 0)
-			    .remove()
+			    .attr("y1", 0)
+			    .attr("y2", line_height);
 
-		d3.select(".horline2")
-				.style("opacity", 0)
-				.attr("transform",
-						"translate(" + margins.left + "," + 
-										yPos + ")")
+			// append horizontal line for crosshair
+			  focus.append("line")
+			    .attr("class", "horline2")
+			    .style("stroke", "black")
+			    .style("stroke-dasharray", "4.5")
+			    .style("opacity", 0.5)
+			    .attr("x1", 0)
+			    .attr("x2", line_width);
+
+			// append dot to the linegraph
+			focus.append("circle")
+				.attr("class", "dotline")
+				.attr("cx", x_line(format.parse(line_data.year)) + margins.left)
+				.attr("cy", y_line(line_data.number) + margins.top)
+				.style("r", "0px")
+				.style("fill", "red")
 				.transition().duration(300)
+				.style("r", "6px")
+				.style("fill", "orange")
+
+			// also change path color of the linegraph
+		 	d3.select("path." + route_name.split(' ').join('.'))
+	  			.transition().duration(300)
+				.style("stroke-width", "4px")
+				.style("stroke", "orange")
+				.style("fill", "none")
 				.style("opacity", 0.5)
-				.transition().delay(2000).duration(600)
-				.style("opacity", 0)
-				.remove()
 
-		d3.select(".focus").style("display", null)
+			// also change color of route on the map
+			d3.select("circle." + route_name.split(' ').join('.'))
+					.style("fill", "orange");
 
-		d3.select(".verline").style("opacity", 0)
-		d3.select(".horline").style("opacity", 0)
+			// determine x and y positions for crosshairs 
+			var xPos = x_line(format.parse(line_data.year)) + margins.left,
+					yPos = y_line(line_data.number) + margins.top;
 
+			// change position of the crosshair
+		    d3.select(".verline2")
+		    		.style("opacity", 0)
+				    .attr("transform",
+				            "translate(" + xPos + "," 
+				                            + margins.top + ")")
+				    .transition().duration(300)
+				    .style("opacity", 0.5)
 
-		d3.select(".lineinfo.year")
-				.text("Year: " + cur_year)
+			d3.select(".horline2")
+					.style("opacity", 0)
+					.attr("transform",
+							"translate(" + margins.left + "," + 
+											yPos + ")")
+					.transition().duration(300)
+					.style("opacity", 0.5)
 
-		d3.select(".lineinfo.number")
-			    .text("Refugees: " + numberWithCommas(line_data.number))
-	}
+			// stop displaying focus and change opacity of crosshair
+			d3.select(".focus").style("display", null)
+			d3.select(".verline").style("opacity", 0)
+			d3.select(".horline").style("opacity", 0)
+
+			// show information for the datapoint that the dot is on
+			d3.select(".lineinfo.year")
+					.text("Year: " + cur_year)
+
+			d3.select(".lineinfo.number")
+				    .text("No. Refugees: " + numberWithCommas(line_data.number))
+		}
+		else
+		{
+			// transform line back to original state
+			d3.select("path." + route_name.split(' ').join('.'))
+				.transition().duration(300)
+				.style("stroke-width", "2px")
+				.style("stroke", "red")
+				.style("opacity", 0.7)
+
+			// display no values in linegraph if there is no data for year
+			d3.select(".focus").style("display", "none")
+		}
+	}	
 	else
 	{
-		// transform line back to original state
-		d3.select("path." + route_name.split(' ').join('.'))
-			.transition().duration(300)
-			.style("stroke-width", "2px")
-			.style("stroke", "red")
-			.style("opacity", 0.7)
-
-
+		// show trackline if linegraph contains all the route lines
+		trackLine();
 	}
 };
 
+/* This function is used for showing the trackline if all routes are in linegraph */
+function trackLine() {
+		// get the x position of the line when slider is changed
+		xPos = x(format.parse(String(cur_year))) + margins.left;
 
+		// make trackline appear at the right position
+		d3.select(".track")
+	    		.style("opacity", 0.5)
+			    .attr("transform",
+			            "translate(" + xPos + "," + margins.top + ")");
+
+		// show current year in the linegraph
+		d3.select("text.allroutes")
+	    	.text("Year: " + cur_year);
+};
 
 

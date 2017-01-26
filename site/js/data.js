@@ -191,7 +191,7 @@ function transformRefstreams(refstreams)
 			// add routes as objects to 'data'. 'data' dataset is sorted by routes
 			if (i == 0)
 			{
-				if (cur_route != "Totals")
+				if (cur_route != "Totals" && cur_route != "Apulia and Calabria route")
 				{
 					if (cur_number != "N/A")
 					{
@@ -211,7 +211,7 @@ function transformRefstreams(refstreams)
 				{
 					if (cur_route == data[k].route)
 					{
-						if (cur_number != "N/A" && cur_route != "Totals")
+						if (cur_number != "N/A" && cur_route != "Totals" && cur_route != "Apulia and Calabria route")
 						{
 							data[k].years.push({"year": refstreams[i].year, "number": Number(cur_number)});
 						}

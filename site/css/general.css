@@ -88,9 +88,12 @@ h2 {
 	padding: 40px;
 
 }
-.bar {
+.bar.x.axis {
 	overflow: scroll;
+}
+.bar {
 	width: 500px;
+	overflow: scroll;
 }
 .bar, .line {
 	/*float: left;*/
@@ -134,6 +137,9 @@ h2 {
 }
 .title {
 	font-size: 16px;
+}
+.y.axis.bar {
+
 }
 
 
