@@ -59,8 +59,22 @@ function drawCircles(refstreams) {
 				.attr("cy", y)
 				.attr("r", 0)
 				.call(tip)
-				.on("mouseover", tip.show)
-				.on("mouseout", tip.hide)
+				.on("mouseover", function(d, i) {
+					tip.show(d, i);
+					document.body.style.cursor = "pointer";
+
+					d3.select(".linegraph").select("path." + route.split(' ').join('.'))
+								// .transition().duration(200)
+								// .style("stroke", "orange")
+					})
+				.on("mouseout", function(d, i) { 
+					tip.hide(d, i);
+					document.body.style.cursor = "default"; 
+
+					d3.select(".linegraph").select("path." + route.split(' ').join('.'))
+								// .transition().duration(200)
+								// .style("stroke", "red")
+					})
 				.on("click", clickFunction)
 				.transition().duration(550)
 				.attr("r", getRadius(number))
@@ -96,15 +110,15 @@ function drawCircles(refstreams) {
 				// make linetoggle button appear 
 				d3.select("button.linetoggle").style("display", null)
 
-				// show the data values next to the dot
-			    d3.select(".lineinfo.year")
-			    	.text("Year: " + cur_year)
-
 				// create new linegraph for the route that was clicked on in map
 				createLine2(refstreams);
 
 				// dotLine function so dot shows for current year and route in linegraph
 				dotLine();
+
+				// show the data values n top-left of lineegraph
+			    d3.select(".lineinfo.year")
+			    	.text("Year: " + cur_year)
 			};
 
 			/* This function determines the color for the circle. */

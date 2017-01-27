@@ -93,7 +93,7 @@ function createLine(refstreams)
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis);
-	console.log(xAxis)
+
 	// add title to x-axis
 	// xAxis.append("text")
 	// 	.attr("class", "x label line")
@@ -165,6 +165,8 @@ function createLine(refstreams)
 				d3.select(".allroutes.number")
 					.text("No. Refugees: Unknown");
 			}
+
+			
 		})
 		.on("mouseout", function(d) {
 			d3.select(this)
@@ -534,6 +536,7 @@ function dotLine() {
 				line_data = years[i];
 			}
 		}
+
 		// remove the current .dotline circle and .focus2
 		d3.select(".dotline").remove();
 		d3.selectAll(".focus2").remove();

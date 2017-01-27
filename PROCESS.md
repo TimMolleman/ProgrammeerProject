@@ -71,3 +71,6 @@ is de code voor mij nu een stuk overzichtelijker (immers, niet alles meer in Ã©Ã
 - De route blijft nu opgelicht wanneer de slider bewogen heeft: Zo weet de gebruiker altijd om welk jaar het gaat.
 - Begin gemaakt aan een probleem oplossen met de bargraph. Het is namelijk zo dat er landen zijn waar vluchtelingenaantallen van bepaalde herkomsten gelijk zijn aan elkaar. In dit geval verschijnen er meer dan 5 bars op de bargraph. Dit zorgt er weer voor dat de bargraph breder wordt dan normaal. Ik wil ervoor zorgen dat het mogelijk is om te scrollen wanneer dit het geval is. Dit is gelukt, maar de titel en y-as bewegen vooralsnog niet mee als er gescrolled wordt. Dit wil ik wel.
 - Morgen dus met de bagraph verder en ook bugs oplossen. Functionaliteit nu af.
+
+# day 15 (17 januari 2017)
+- Van het idee afgestapt dat ik de mogelijkheid tot scrollen aan de bargraph wil toevoegen. Aan de hand van feedback besloten dat ik nu gewoon de bars kleiner ga maken wanneer er meer dan 5 bars zijn. Dit is mij gelukt. Vanafnu bugs fixen en vooral CSS om pagina er beter uit te laten zien.
