@@ -2,6 +2,7 @@
 	margin: 0;
 	border: 0;
 	padding: 0;
+	font-family: "Tahoma", Geneva, sans-serif;
 }
 body {
 	background: #F0F0F0;
@@ -9,18 +10,33 @@ body {
 h1 {
 	padding: 1%;
 }
-h2 {
+h3 {
 	padding: 1%;
+}
+p {
+	padding: 1%;
+	font-size: 14px;
+	text-align: justify;
+}
+footer {
+	margin-top: 60px;
+	height: 40px;
+	background: #333333;
+	width: 100%;
+	opacity: .9;
+	box-shadow: 0px 500px 0px 500px #333333;
 }
 #map {
 	width: 700px;
 	height: 500px;
 	margin: 0 auto;
 	text-align: center;
+	/*padding:20px;*/
+	position: absolute;
 }
 #navigation {
 	float: right;
-	padding: 20px 20px 20px 0;
+	padding: 20px 50px 20px 20px;
 }
 #navigation ul li{
 	display: inline-block;
@@ -38,6 +54,7 @@ h2 {
 }
 #navigation ul li a:hover{
 	text-decoration: underline;
+	opacity: 0.9;
 }
 #header {
 	width: 100%;
@@ -51,7 +68,11 @@ h2 {
 	float: left;
 	width: 40%;
 	color: white;
-	padding: 25px 30px;
+	padding: 24px 10px 24px 30px;
+	margin: 0px;
+}
+#header h1:hover {
+	opacity: 0.9;
 }
 #doc {
 	margin: 40px 0;
@@ -77,31 +98,43 @@ h2 {
 .info p {
 	line-height: 150%;
 }
-.slideholder {
-	margin: 0 auto;
-	text-align: center;
-}
-.slider {
-	width: 40%;
-}
-.graphcontainer {
-	padding: 40px;
-
+#slider {
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
 }
 .bar.x.axis {
 	overflow: scroll;
 }
-.bar {
-	width: 500px;
-	overflow: scroll;
+#mapcontainer {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: solid 1px;
+	width: 1300px;
+	margin: 0 auto;
+}
+.graphcontainer { 
+    width: 1300px;
+    text-align: center;
+    margin: 0 auto;
+    border: solid 1px;
 }
 .bar, .line {
-	/*float: left;*/
-	/*display: inline-block;*/
-	padding: 20px;
+	display: inline-block;
 }
-.line:hover {
-	width: 20px;
+.show-year {
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	padding: 5px 10px;
+	text-align: center;
+	width: 20%;
+	background-color: #405580;
+	color: white;
+	opacity: 0.9;
+	border-radius: 10px;
+	border: solid 3px #19334d;
 }
 .popup
 {
@@ -135,11 +168,120 @@ h2 {
 {
 	/*display: none;*/
 }
-.title {
-	font-size: 16px;
+div .butcontainer {
+	position: relative;
+	top: 60px;
+    left: -185px;
 }
-.y.axis.bar {
+.btn-default {
+	background: #405580;
+	opacity: 0.9;
+	font-size: 12px;
+	color: white;
+}
+.btn-default.linetoggle {
+	width: 80px;
+}
+.btn-default.routestoggle {
+	width: 120px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding: 10px 6px;
+    background: #405580;
+    color: white;
+    opacity: 0.9;
 
 }
-
-
+.btn-default:hover {
+	opacity: 1.0;
+	background: #405580;
+	color: white;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 3px 3px 4px #000000;
+  background: #405580;
+  border-radius: 1px;
+  border: 0px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #00001E;
+  height: 26px;
+  width: 26px;
+  border-radius: 13px;
+  background: #FFFFFF;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7.5px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #405580;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 3px 3px 4px #000000;
+  background: #405580;
+  border-radius: 1px;
+  border: 0px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #00001E;
+  height: 26px;
+  width: 26px;
+  border-radius: 13px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #405580;
+  border: 0px solid #010101;
+  border-radius: 2px;
+  box-shadow: 3px 3px 4px #000000;
+}
+input[type=range]::-ms-fill-upper {
+  background: #405580;
+  border: 0px solid #010101;
+  border-radius: 2px;
+  box-shadow: 3px 3px 4px #000000;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #00001E;
+  height: 26px;
+  width: 26px;
+  border-radius: 13px;
+  background: #FFFFFF;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #405580;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #405580;
+}

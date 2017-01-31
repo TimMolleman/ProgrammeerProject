@@ -24,7 +24,7 @@ function findRouteNumber(data) {
 /* Function draws the circles to the datamap.  */ 
 function drawCircles(refstreams) {
 	var data = transformRefstreams(refstreams);
-
+	console.log(data)
 	// remove current circles from the map and circle tooltips from the html
 	d3.select(".routes").remove();
 	d3.selectAll(".d3tip.routes").remove();
@@ -81,7 +81,7 @@ function drawCircles(refstreams) {
 				.style("fill", fillCircles)
 				.style("opacity", 0.8)
 				.transition().delay(2100).duration(800)
-				.style("fill", "red")
+				.style("fill", "red");
 
 			/* Creates linegraph for the route that was clicked on in map */
 			function clickFunction() {
@@ -90,7 +90,7 @@ function drawCircles(refstreams) {
 				// change current route circle to red if it is still orange
 				d3.select("." + route_name.split(' ').join('.'))
 					.transition().duration(300)
-					.style("fill", "red")
+					.style("fill", "red");
 
 				// get the classname (route) of circle that is clicked on
 				route_name = d3.select(this)[0][0].className.baseVal;
@@ -99,16 +99,16 @@ function drawCircles(refstreams) {
 					.transition().duration(300)
 					.style("fill", "orange")
 					.transition().delay(2200).duration(300)
-					.style("fill", "red")
+					.style("fill", "red");
 
 				// hide crosshairs 
-				d3.select(".focus").style("display", null)
+				d3.select(".focus").style("display", null);
 
 				// delete linegraph on screen if one is already there 
 				d3.select(".linegraph").remove();
 
 				// make linetoggle button appear 
-				d3.select("button.linetoggle").style("display", null)
+				d3.select("button.linetoggle").style("visibility", "visible");
 
 				// create new linegraph for the route that was clicked on in map
 				createLine2(refstreams);

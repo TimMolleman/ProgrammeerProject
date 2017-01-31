@@ -3,10 +3,27 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Routes</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/general.css"/>
+
+	<script src="../js/data.js"></script>
+	<script src="../js/map.js"></script>
+	<script src="../js/bar.js"></script>
+	<script src="../js/line.js"></script>
+	<script src="../js/circles.js"></script>
+
 	<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="http://d3js.org/topojson.v1.min.js"></script>
 	<script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+	<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<script
+  	src="https://code.jquery.com/jquery-3.1.1.js"
+  	integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  	crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -15,22 +32,41 @@
 		<div id="navigation">
 			<ul>
 				<li><a href="index.html">Home</a></li>
-				<li><a href="routes.html" class="current">Migration Routes</a></li>
-				<li><a href="growth.html">Migrant Growth</a></li>
+				<li><a href="routes.html" class="current">Visualized Data</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="clear">
 	</div>
 	<div class="info">
-		<h1>Migration Routes</h1>
-		<p>The unauthorized foreign migrants came mostly from Muslim-majority countries of the regions of Western Asia (Middle East), South Asia, Africa (North Africa and Sub-Saharan Africa),[13][14] and Western Balkans.[15] By religious affiliation, the overwhelming majority of entrants were Muslim (including Sunni Muslims, but also non-Sunni minorities), with a small component of non-Muslim minorities (including Yazidis, Assyrians, Mandeans, etc.). According to the United Nations High Commissioner for Refugees, the top three nationalities of entrants of the over one million Mediterranean Sea arrivals between January 2015 and March 2016 were Syrian (46.7%), Afghan (20.9%) and Iraqi (9.4%),[16] all overwhelmingly Muslim entrants.</p>
+		<h1>The Data Visualized</h1>
+		<p>Below, a number of visualisations are available that contain information on illegal immigration to Europe between the years 2006 and 2016. For almost every European country, information is available on how many people applied for asylum in each of these years. If you click on any coloured country in the map, a bargraph below the map will show the countries of origin where most first time asylum applicants came from in the selected year. The slider can be used to select a year, and the map and barchart will update accordingly.
+		</p>
+		<p>
+		The map also contains information on the use of <a href="http://frontex.europa.eu/trends-and-routes/migratory-routes-map/" target="_blank">migratory routes</a> to Europe by illegal immigrants. The timeslider will adjust the size of the circles - representing migratory routes - on the map based on to the number of illegal border crossings into European countries by immigrants who used these routes. Lastly, a linegraph is available that shows the usage of all migratory routes from 2006 to 2016. Clicking on one of the lines, or a migratory route in the map, will update the linegraph to only contain information on the selected route.
+		</p>
 	</div>
-	<div id="map">
+	<div id="mapcontainer" style="position: relative">
+		<div id="map" style="position: relative"></div>
 	</div>
-	<div class="slideholder">
-		<input class="slider" type="range" name="points" min="2006" max="2015">
+	<div class="show-year">
+		<text></text>
 	</div>
+	<input id="slider" type="range" name="points" min="2006" max="2016">
+	<div class ="graphcontainer">
+		<div class="bar">
+		</div>
+		<div class="line">
+			<div class="butcontainer">
+				<button class="linetoggle btn btn-default" type="button">All Routes</button>
+			</div>
+		</div>
+	</div>
+	<footer>
+	</footer>
+
+
+	<script src="../js/index.js"></script>
 
 </body>	
 </html>

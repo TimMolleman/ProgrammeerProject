@@ -43,9 +43,9 @@ function createLine(refstreams)
 	var data = transformRefstreams(refstreams);
 
 	// define margins of linegraph
-	margins = {left: 120, right: 120, top: 50, bottom: 75},
+	margins = {left: 120, right: 120, top: 50, bottom: 80},
 			width = 700 - margins.left - margins.right,
-			height = 450 - margins.bottom - margins.top;
+			height = 500 - margins.bottom - margins.top;
 
 	// define function for transforming stringed year to Javascript time object
 	format = d3.time.format("%Y");
@@ -92,7 +92,12 @@ function createLine(refstreams)
 	g.append("g")
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
-		.call(xAxis);
+		.call(xAxis)
+		.selectAll("text")
+		.style("text-anchor", "end")
+		.attr("transform", "rotate(-50)")
+ 		.attr("dx", "-.8em")
+        .attr("dy", ".14em")
 
 	// add title to x-axis
 	// xAxis.append("text")
@@ -142,6 +147,8 @@ function createLine(refstreams)
 			d3.select("circle." + d.route.split(' ').join('.'))
 				.style("fill", "orange")
 
+			document.body.style.cursor = "pointer";
+
 			// get the right route name when mouseover line
 			var class_route = d3.select(this)[0][0].className.baseVal;
 
@@ -184,6 +191,9 @@ function createLine(refstreams)
 
 			d3.select(".allroutes.number")
 				.text("")
+
+			document.body.style.cursor = "default";
+
 		})
 		.on("click", function() {
 			// get routename of line
@@ -196,10 +206,13 @@ function createLine(refstreams)
 			createLine2(refstreams);
 			
 			// hide the linetoggle button
-			d3.select("button.linetoggle").style("display", null)
+			d3.select("button.linetoggle").style("visibility", "visible")
 
 			// show tooltip at right position in linegraph
 			dotLine();
+
+			document.body.style.cursor = "default";
+
 		});
 
 	// append group element, used for showing trackline on change of slider
@@ -306,7 +319,12 @@ function createLine2(refstreams)
 	 var xAxis = g.append("g")
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + line_height + ")")
-		.call(xAxis);
+		.call(xAxis)
+		.selectAll("text")
+		.style("text-anchor", "end")
+		.attr("transform", "rotate(-50)")
+ 		.attr("dx", "-.8em")
+        .attr("dy", ".30em");
 
 	// add title to x-axis
 	xAxis.append("text")
@@ -344,6 +362,7 @@ function createLine2(refstreams)
 		.style("stroke", "orange")
 		.style("stroke-width", "4px")
 		.style("opacity", 0.5)
+		.style("z-index", "1")
 
 	// append "g" elements for dots that will track line
 	var focus = canvas.append("g")

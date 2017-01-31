@@ -64,9 +64,13 @@ function getFillKey(total) {
 	{
 	    color = "30 - 60";
 	}
+	else if (total >= 60000 && total < 100000)
+	{
+		color = "60 - 100"
+	}
 	else
 	{
-	    color = "> 60";
+	    color = "> 100";
 	}
 	return color;
 };
@@ -145,6 +149,11 @@ function createFillData(current_data) {
 	// add an object to the map_data variable for current country
 	map_data[country_code] = {number: total, fillKey: key};
 	});
+
+	if (cur_year == "2007" || cur_year == "2006")
+	{
+		map_data["ITA"] = {number: "unknown", fillKey: "unknown"};
+	}
 
 	return map_data;
 };

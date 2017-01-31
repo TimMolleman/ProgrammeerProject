@@ -26,20 +26,23 @@ function analyze(error, migrants, refstreams) {
 	map = createMap(cur_year, migrants);
 
 	// initial barchart country (Germany)
-	cur_country = 'LVA'
-	cur_country_name = "Latvia"
+	cur_country = 'DEU'
+	cur_country_name = "Germany"
 
 	// initialize default barchart (for Germany (2011))
-	// createBarchart(cur_year, migrants);
+	createBarchart(cur_year, migrants);
 
 	// draw circles for the initial year (2011)
 	drawCircles(refstreams);
 
 	// display the linetoggle button initially
-	d3.select("button.linetoggle").style("display", "none")
+	d3.select("button.linetoggle").style("visibility", "hidden")
 
 	// draw the linegraph that contains information on all the refugee routes
 	createLine(refstreams);
+
+	d3.select(".show-year").select("text")
+		.text("Selected Year: " + cur_year)
 
 	// update the map everytime the slider is moved for year on slider
 	var slider = document.getElementById("slider")
@@ -49,7 +52,7 @@ function analyze(error, migrants, refstreams) {
 		cur_year = slider.value;
 
 		// update barchart for value on the slider 
-		// createBarchart(cur_year, migrants);
+		createBarchart(cur_year, migrants);
 
 		// update map according to the current year on slider
 		updateMap(cur_year, migrants);
@@ -62,23 +65,26 @@ function analyze(error, migrants, refstreams) {
 
 		// draw dot on routes line if there is data for the year
 		dotLine();
+
+		d3.select(".show-year").select("text")
+			.text("Selected Year: " + cur_year)
 	});
 
 	// create barchart for country that is clicked on in map (for year on slider)
-	// map.svg.selectAll('.datamaps-subunit')
-	// 	.on('click', function(geography) {
-	// 		// safe current data in a variable
-	// 		var click_data = currentData(cur_year, migrants)
+	map.svg.selectAll('.datamaps-subunit')
+		.on('click', function(geography) {
+			// safe current data in a variable
+			var click_data = currentData(cur_year, migrants)
 
-	// 		// create new barchart if there is data available for country
-	// 		if (findCountry(click_data, geography.id) != undefined)
-	// 		{
-	// 			cur_country = geography.id;
-	// 			cur_country_name = geography.properties.name;
+			// create new barchart if there is data available for country
+			if (findCountry(click_data, geography.id) != undefined)
+			{
+				cur_country = geography.id;
+				cur_country_name = geography.properties.name;
 
-	// 			createBarchart(cur_year, migrants);
-	// 		};
-	// 	}); 
+				createBarchart(cur_year, migrants);
+			};
+		}); 
 	
 	/* Function that either removes or adds migrant routes circles */
 	function clickRoutesButton() {
@@ -91,15 +97,18 @@ function analyze(error, migrants, refstreams) {
 					route_name = undefined;
 					years = undefined;
 					routes_toggle = 0;
-					d3.select("button.linetoggle").style("display", "none");
+					d3.select("button.linetoggle").style("visibility", "hidden");
+					d3.select(".graphcontainer").style("width", "50%")
+					d3.select("button.routestoggle").text("Toggle Routes (Off)")
 				}
 				else
 				{	
 					drawCircles(refstreams);
 					routes_toggle = 1;
 					createLine(refstreams);
-					d3.select("button.linetoggle").style("display", "none");
-
+					d3.select("button.linetoggle").style("visibility", "hidden");
+					d3.select(".graphcontainer").style("width", "90%")
+					d3.select("button.routestoggle").text("Toggle Routes (On)")
 				}
 			});
 	};
@@ -122,7 +131,7 @@ function analyze(error, migrants, refstreams) {
 				createLine(refstreams);
 
 				// hide switch button. Button only necessary when one line in graph
-				d3.select("button.linetoggle").style("display", "none")
+				d3.select("button.linetoggle").style("visibility", "hidden")
 			});
 	};
 
