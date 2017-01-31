@@ -1,6 +1,6 @@
-* EindVerslag
-***Tim Molleman
-** Overzicht Applicatie
+# EindVerslag
+###Tim Molleman
+## Overzicht Applicatie
 In mijn applicatie bied ik gebruikers informatie over - voornamelijk illegale - migratiestromen naar Europese landen vanuit landen buiten Europa. De applicatie bevat informatie van de jaren 2006 tot en met 2016. De eerste html-pagina van de applicatie bevat tekstuele informatie over illegale immigratie naar Europa en het doel van de applicatie. Dit doel wordt verwezenlijkt door drie visualisaties die op de tweede html-pagina beschikbaar zijn. De eerste visualisatie is een datamap die update aan de hand van een timeslider met de jaren 2006-2016 erop. In de datamap kleurt ieder land in aan de hand van hoeveel mensen voor het eerst een asielaanvraag hebben gedaan deze landen in het gekozen jaar. Hiernaast zijn er op de datamap cirkels aanwezig die migratieroutes richting Europa aangeven. De grootte van iedere cirkel wordt bepaald door het aantal illegale grens oversteken dat er via die route gemaakt is naar een Europees land om Europa binnen te komen.
 
 De datamap is verbonden aan twee andere visualisaties. Wanneer een gebruiker op een land klikt waar data over is, verschijnt er ten eerste een barchart die voor het aangeklikte land de top 5 landen van herkomst laat zien van 'first-time' asielaanvragers. Ook het aantal asielaanvragen voor ieder van deze landen van herkomst is hier te zien. De barchart update ook wanneer de timeslider beweegt. Hiernaast is er een lijngrafiek aanwezig die het gebruik van de migratieroutes laat zien van de jaren 2006-2016. Iedere migratieroute wordt weergegeven als een lijn in deze grafiek. Wanneer een gebruiker één van de lijnen aanklikt of een cirkel in de kaart aanklikt, update de lijngrafiek zodat deze alleen nog een lijn laat zien voor de geselecteerde migratieroute.
