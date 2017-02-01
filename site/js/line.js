@@ -10,7 +10,7 @@
  */
 var x_line,
 	y_line,
-	format,
+	format = d3.time.format("%Y"),
 	route_name,
 	years,
 	xPos,
@@ -21,22 +21,8 @@ var x_line,
 /* This function is used to create a linegraph that contains lines for all routes */
 function createLine(refstreams)
 {
-	// array that will be used to find min/max values in refstreams dataset
-	var values = []
-
-	// loop over all the objects (ordered by year) in refstreams array 
-	for (i = 0; i < refstreams.length; i++)
-	{
-		// loop over all routes in current objects
-		for (j = 0; j < refstreams[i].routes.length; j++)
-		{
-			// if info on number of refugees using a route, add number to 'values'
-			if (refstreams[i].routes[j].number != "N/A" && refstreams[i].routes[j].route != "Totals")
-			{
-				values.push(Number(refstreams[i].routes[j].number));
-			}
-		}
-	}
+	// store values of illegal border crossings in array
+	var values = findOuterValues(refstreams);
 
 	// determine height and width of the linegraphs
 	line_width = graph_width - margins.line.left - margins.line.right,
@@ -44,9 +30,6 @@ function createLine(refstreams)
 
 	// transform data so that it can be used to draw the linegraph
 	var data = transformRefstreams(refstreams);
-	console.log(data)
-	// define function for transforming stringed year to Javascript time object
-	format = d3.time.format("%Y");
 
 	// scale the x-axis data
 	x = d3.time.scale()
@@ -57,7 +40,7 @@ function createLine(refstreams)
 	var xAxis = d3.svg.axis()
 				.scale(x)
 				.orient("bottom")
-		
+
 	// scale the y-axis data		
 	var y = d3.scale.linear()
 		.domain(d3.extent(values, function(d) { return d; }))
@@ -74,28 +57,17 @@ function createLine(refstreams)
 
 	// create line function for every object in data array
 	var line = d3.svg.line()
-				// .interpolate("basis")
 				.x(function(d) { return x(format.parse(d.year)); })
 				.y(function(d) { return y(d.number); });
 
-	// create canvas to draw the linegraph on 
-	var canvas = d3.select(".line").append("svg")
-				.attr("width", line_width + margins.line.left + margins.line.right)
-				.attr("height", line_height + margins.line.bottom + margins.line.top)
-				.attr("class", "linegraph"),
-			g = canvas.append("g")
-				.attr("transform", "translate(" + margins.line.left + "," + margins.line.top + ")");
+	// draw canvas and append transformed group element to canvas
+	var canvas = drawLineCanvas(),
+		g = transformGraph(canvas);
 
-	// call the x-axis
-	xAxis = g.append("g")
-		.attr("class", "x axis linegraph")
-		.attr("transform", "translate(0," + line_height + ")")
-		.call(xAxis)
-		.selectAll("text")
-		.style("text-anchor", "end")
-		.attr("transform", "rotate(-50)")
- 		.attr("dx", "-.8em")
-        .attr("dy", ".14em")
+	// add the axes and title to the graph
+	callxAxis(g, xAxis);
+	callyAxis(g, yAxis);
+	addLineTitle(canvas, "all");
 
 	d3.select(".x.axis.linegraph")
 		.append("text")
@@ -104,26 +76,6 @@ function createLine(refstreams)
 		.attr("x", 240)
 		.attr("y", 70)
 
-	// call the y-axis
-	yAxis = g.append("g")
-		.attr("class", "y axis linegraph")
-		.call(yAxis);
-
-	// add title to y-axis
-	yAxis.append("text")
-		.attr("class", "y axis linegraph label")
-		.attr("x", -230)
-		.attr("y", -70)
-		.attr("transform", "rotate(270)")
-		.text("No. Illegal Border Crossings")
-
-	// add title to the linegraph
-	canvas.append("text")
-			.attr("class", "title")
-			.attr("y", 20)
-			.attr("x", 120)
-			.text("Use of Migratory Routes to Europe by Refugees from 2006 to 2016");
-	console.log(data)
 	// append lines to the graph
 	g.selectAll(".line")
 		.data(data)
@@ -251,22 +203,6 @@ function createLine(refstreams)
 /* This function is used to create linegraph for circle that is clicked on in datamap */
 function createLine2(refstreams)
 {
-	// array that will be used to find min/max values in refstreams dataset
-	var values = []
-	// loop over all the objects (ordered by year) in refstreams array 
-	for (i = 0; i < refstreams.length; i++)
-	{
-		// loop over all routes in current objects
-		for (j = 0; j < refstreams[i].routes.length; j++)
-		{
-			// if info on number of refugees using a route, add number to 'values'
-			if (refstreams[i].routes[j].number != "N/A" && refstreams[i].routes[j].route != "Totals")
-			{
-				values.push(Number(refstreams[i].routes[j].number));
-			}
-		}
-	}
-
 	// transform data so it can be used to draw the linegraph
 	var data = transformRefstreams(refstreams),
 		route_data = findRoute(data, route_name);
@@ -299,25 +235,13 @@ function createLine2(refstreams)
 				.x(function(d) { return x_line(format.parse(d.year)); })
 				.y(function(d) { return y_line(d.number); })
 
-	// append canvas to .line div element for the linegraph
-	var canvas = d3.select(".line").append("svg")
-				.attr("width", line_width + margins.line.left + margins.line.right)
-				.attr("height", line_height + margins.line.bottom + margins.line.top)
-				.attr("class", "linegraph"),
-			g = canvas.append("g")
-				.attr("transform", "translate(" + margins.line.left + "," + margins.line.top + ")")
-				.attr("class", "graph");
+	var canvas = drawLineCanvas(),
+		g = transformGraph(canvas);
 
-	// call the x-axis
-	 var xAxis = g.append("g")
-		.attr("class", "x axis line")
-		.attr("transform", "translate(0," + line_height + ")")
-		.call(xAxis)
-		.selectAll("text")
-		.style("text-anchor", "end")
-		.attr("transform", "rotate(-50)")
- 		.attr("dx", "-.8em")
-        .attr("dy", ".30em");
+	// call the axes and add a title to the linegraph
+	callxAxis(g, xAxis);
+	callyAxis(g, yAxis);
+	addLineTitle(canvas, "single");
 
 	// add title to x-axis
 	d3.select(".x.axis.line")
@@ -326,26 +250,6 @@ function createLine2(refstreams)
 		.text("Year")
 		.attr("x", 240)
 		.attr("y", 70)
-
-	// call the y-axis
-	var yAxis = g.append("g")
-		.attr("class", "y axis")
-		.call(yAxis);
-
-	// add title to y-axis
-	yAxis.append("text")
-		.attr("class", "y axis line label")
-		.attr("x", -230)
-		.attr("y", -70)
-		.attr("transform", "rotate(270)")
-		.text("No. Illegal Border Crossings")
-
-	// add title to the linegraph
-	canvas.append("text")
-			.attr("class", "title")
-			.attr("y", 15)
-			.attr("x", 120)
-			.text("Number of Illegal Border Crossings via " + route_name);
 
 	// append line to the graph
 	g.append("path")
@@ -678,5 +582,95 @@ function trackLine() {
 	    	.text("Year: " + cur_year);
 };
 
+/* 
+ This function is used to store the number of illegal border crossings
+ for every route for every year in an array. Function can than be used to
+ scale the y-axis of linegraph created by createLine function.
+ */
+function findOuterValues (refstreams) {
+	// array that will be used to find min/max values in refstreams dataset
+	var values = []
+	// loop over all the objects (ordered by year) in refstreams array 
+	for (i = 0; i < refstreams.length; i++)
+	{
+		// loop over all routes in current objects
+		for (j = 0; j < refstreams[i].routes.length; j++)
+		{
+			// if info on number of refugees using a route, add number to 'values'
+			if (refstreams[i].routes[j].number != "N/A" && refstreams[i].routes[j].route != "Totals")
+			{
+				values.push(Number(refstreams[i].routes[j].number));
+			}
+		}
+	}
+	return values;
+};
 
+/* Function is used to create canvas when a linegraph has to be drawn */
+function drawLineCanvas() {
+// create canvas to draw the linegraph on 
+	var canvas = d3.select(".line").append("svg")
+			.attr("width", line_width + margins.line.left + margins.line.right)
+			.attr("height", line_height + margins.line.bottom + margins.line.top)
+			.attr("class", "linegraph");
+
+	return canvas;
+};
+
+/* 
+Function should be used on a linegraph canvas. It appends a group element 
+that is at a transformed position. Elements that have to be included
+in the actual linegraph - width and height minus the margins - should
+be appended to this element.
+*/
+function transformGraph(canvas) {
+	var g = canvas.append("g")
+			.attr("transform", "translate(" + margins.line.left + "," + margins.line.top + ")")
+			.attr("class", "graph");
+
+	return g;
+};
+
+/* Calls x-axis to either a createLine or a createLine2 linegraph */
+function callxAxis(g, xAxis) {
+	g.append("g")
+		.attr("class", "x axis linegraph")
+		.attr("transform", "translate(0," + line_height + ")")
+		.call(xAxis)
+		.selectAll("text")
+		.style("text-anchor", "end")
+		.attr("transform", "rotate(-50)")
+ 		.attr("dx", "-.8em")
+        .attr("dy", ".14em")
+};
+
+/* Calls y-axis to either a createLine or a createLine2 linegraph */
+function callyAxis(g, yAxis) {
+	g.append("g")
+		.attr("class", "y axis linegraph")
+		.call(yAxis)
+		.append("text")
+		.attr("class", "y axis linegraph label")
+		.attr("x", -230)
+		.attr("y", -70)
+		.attr("transform", "rotate(270)")
+		.text("No. Illegal Border Crossings")
+};
+
+/* Adds title to either createLine or createLine2 linegraph */
+function addLineTitle(canvas, linetype) {
+	// add title to the linegraph
+	canvas.append("text")
+			.attr("class", "title")
+			.attr("y", 20)
+			.attr("x", 120)
+			.text(function() {
+				if (linetype == "all") {
+					return "Use of Migratory Routes to Europe by Refugees from 2006 to 2016"
+				}
+				else {
+					return "Number of Illegal Border Crossings via " + route_name
+				}
+			});
+}; 
 
