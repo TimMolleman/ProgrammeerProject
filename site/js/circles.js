@@ -132,6 +132,21 @@ function eraseCircles() {
 		.style("r", 0);
 };
 
+/* 
+ * Function finds the right number of refugees and year for 'data' and returns these
+ * values. The 'data' argument should contain a refstreams dataset already transformed
+ * by using the transformRefstreams function.
+ */
+function findRouteNumber(data) {
+	// loop through the data until right year is found and return values
+	for (i = 0; i < data.years.length; i++) 
+	{
+		if (data.years[i].year == cur_year) 
+		{
+			return [data.years[i].number, data.years[i].year];
+		}
+	}
+};
 
 
 
