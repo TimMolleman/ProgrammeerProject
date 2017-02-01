@@ -99,27 +99,21 @@ function findRoute(refstreams, current_route) {
  * amount of refugees that entered a country in a given year.
  */
 function getFillKey(total) {
-	if (total < 1000) {
+	if (total < 1000) 
 	    color = "< 1";
-	}
-	else if (total >= 1000 && total < 5000) {
+	else if (total >= 1000 && total < 5000)
 	    color = "1 - 5";
-	}
-	else if (total >= 5000 && total < 15000) {
+	else if (total >= 5000 && total < 15000)
 	    color = "5 - 15";
-	}
-	else if (total >= 15000 && total < 30000) {
+	else if (total >= 15000 && total < 30000)
 	    color = "15 - 30";
-	}
-	else if (total >= 30000 && total < 60000) {
+	else if (total >= 30000 && total < 60000)
 	    color = "30 - 60";
-	}
-	else if (total >= 60000 && total < 100000) {
+	else if (total >= 60000 && total < 100000)
 		color = "60 - 100"
-	}
-	else {
+	else 
 	    color = "> 100";
-	}
+	
 	return color;
 };
 
@@ -129,28 +123,20 @@ function getFillKey(total) {
  * the number of refugees that used a route.
  */
 function getRadius(refugee_count) {
-	if (refugee_count < 1000) {
+	if (refugee_count < 1000)
 	    return 3 + "px"
-	}
-	else if (refugee_count >= 1000 && refugee_count < 5000) {
+	else if (refugee_count >= 1000 && refugee_count < 5000)
 	    return 4 + "px"
-	}
-	else if (refugee_count >= 5000 && refugee_count < 30000) {
+	else if (refugee_count >= 5000 && refugee_count < 30000)
 	    return 7 + "px"
-	}
-	else if (refugee_count >= 30000 && refugee_count < 50000) {
+	else if (refugee_count >= 30000 && refugee_count < 50000)
 	    return 12 + "px"
-	}
-	else if (refugee_count >= 50000 && refugee_count < 100000) {
+	else if (refugee_count >= 50000 && refugee_count < 100000)
 	    return 16 + "px"
-	}
-	else if (refugee_count >= 100000 && refugee_count < 500000) {
+	else if (refugee_count >= 100000 && refugee_count < 500000)
 	    return 22 + "px"
-	}
 	else 
-	{
 		return 32 + "px"
-	}
 };
 
 /* Function returns data in 'migrants' dataset for a given year */
