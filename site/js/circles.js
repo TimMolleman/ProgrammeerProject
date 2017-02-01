@@ -9,23 +9,10 @@
  * NOTE: data.js has to be loaded first
  */
 
-/* Function finds the right number of refugees and year for 'data' and returns */
-function findRouteNumber(data) {
-	// loop through the data until right year is found and return values
-	for (i = 0; i < data.years.length; i++) 
-	{
-		if (data.years[i].year == cur_year) 
-		{
-			return [data.years[i].number, data.years[i].year];
-		}
-	}
-};
-
-/* Function draws the circles to the datamap.  */ 
+/* Function draws the circles for migration routes to the datamap. */ 
 function drawCircles(refstreams) {
 	var data = transformRefstreams(refstreams);
-	console.log(data)
-	// remove current circles from the map and circle tooltips from the html
+	// remove current circles and circle tooltips from the html
 	d3.select(".routes").remove();
 	d3.selectAll(".d3tip.routes").remove();
 
@@ -42,17 +29,20 @@ function drawCircles(refstreams) {
 			route = d.route,
 			ref_info = findRouteNumber(d);
 
-		//  only proceed if there is data found with findRouteNumber function
+		//  only proceed if data is found for year with findRouteNumber function
 		if (ref_info != undefined)
 		{	
+			// safe number of illegal border crossings and the year
 			var number = findRouteNumber(d)[0],
 				year = findRouteNumber(d)[1];
 
+			// create tooltip to show next to migration route circle
 			var tip = d3.tip()
 						.attr("class", "d3tip routes")
-						.html(function() { return "<strong>" + route + "</strong><br><strong>Illegal crossings: </strong><span style='color:red'>" + numberWithCommas(number) + "</span>"; });
+						.html(function() { return "<strong>" + route + "</strong><br><strong>Illegal crossings: </strong><span style='color:red'>" 
+							+ numberWithCommas(number) + "</span>"; });
 
-			// append circle to the .routes element
+			// append circle to the .routes element and call tooltip
 			d3.select(".routes").append("circle")
 				.attr("class", route)
 				.attr("cx", x)
@@ -62,18 +52,12 @@ function drawCircles(refstreams) {
 				.on("mouseover", function(d, i) {
 					tip.show(d, i);
 					document.body.style.cursor = "pointer";
-
-					d3.select(".linegraph").select("path." + route.split(' ').join('.'))
-								// .transition().duration(200)
-								// .style("stroke", "orange")
 					})
 				.on("mouseout", function(d, i) { 
 					tip.hide(d, i);
 					document.body.style.cursor = "default"; 
 
 					d3.select(".linegraph").select("path." + route.split(' ').join('.'))
-								// .transition().duration(200)
-								// .style("stroke", "red")
 					})
 				.on("click", clickFunction)
 				.transition().duration(550)
@@ -86,7 +70,7 @@ function drawCircles(refstreams) {
 			/* Creates linegraph for the route that was clicked on in map */
 			function clickFunction() {
 
-				if (route_name != undefined)
+				if (route_name != undefined) // XXX
 				// change current route circle to red if it is still orange
 				d3.select("." + route_name.split(' ').join('.'))
 					.transition().duration(300)
@@ -95,19 +79,20 @@ function drawCircles(refstreams) {
 				// get the classname (route) of circle that is clicked on
 				route_name = d3.select(this)[0][0].className.baseVal;
 
+				// let clicked on circle light up orange for a short duration
 				d3.select("circle." + route_name.split(' ').join('.'))
 					.transition().duration(300)
 					.style("fill", "orange")
 					.transition().delay(2200).duration(300)
 					.style("fill", "red");
 
-				// hide crosshairs 
+				// hide crosshairs for linegraph
 				d3.select(".focus").style("display", null);
 
 				// delete linegraph on screen if one is already there 
 				d3.select(".linegraph").remove();
 
-				// make linetoggle button appear 
+				// make linetoggle button visible 
 				d3.select("button.linetoggle").style("visibility", "visible");
 
 				// create new linegraph for the route that was clicked on in map
@@ -116,12 +101,12 @@ function drawCircles(refstreams) {
 				// dotLine function so dot shows for current year and route in linegraph
 				dotLine();
 
-				// show the data values n top-left of lineegraph
+				// show year in top-left corner of 
 			    d3.select(".lineinfo.year")
-			    	.text("Year: " + cur_year)
+			    	.text("Year: " + cur_year) // XXX dit stuk code komt meerdere malen voor
 			};
 
-			/* This function determines the color for the circle. */
+			/* Function determines the color for the circle. */
 			function fillCircles() 
 			{
 				// for the current route, the color is orange
@@ -139,7 +124,7 @@ function drawCircles(refstreams) {
 	});
 };
 
-/* Function makes that circles disappear smoothly when button_toggle == 0 */ 
+/* Function makes circles disappear smoothly */ 
 function eraseCircles() {
 	d3.selectAll("circle")
 		.transition().duration(550)

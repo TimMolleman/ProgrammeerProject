@@ -66,11 +66,23 @@ is de code voor mij nu een stuk overzichtelijker (immers, niet alles meer in é�
 - Laatste puntjes op visualisaties gezet. Er verschijnt nu linksbovenin bij de linechart informatie over het huidige jaar en het aantal vluchtelingen dat de route genomen heeft. Dit gebeurt zowel wanneer de gebruiker de tooltip in de lijngrafiek met zijn muis beweegt, als wanneer deze de time slider aanpast. Hiernaast is er nu ook een crosshair in de lijngrafiek. Ook licht de route die de gebruiker op het moment geselecteerd heeft kort op wanneer deze de slider beweegt: Hierdoor heeft de gebruiker een reminder die hem/haar eraan herinnert welke route er gekozen is (en dus in de lijngrafiek staat). Ook licht de route op wanneer een gebruiker zijn/haar muis over de lijngrafiek heeft.
 - Vanaf morgen vooral bugs fixen en de html en CSS in orde krijgen. Functionaliteit praktisch af.
 
-# day 14 (16 januari 2017)
+# day 14 (26 januari 2017)
 - Lijngrafiek toch nog aangepast. Je ziet nu initieel een lijngrafiek met alle vluchtelingenroutes erop. Wanneer je op een route in de kaart klikt of één van de lijnen in deze lijngrafiek, wordt de lijngrafiek verwijdert en verschijnt er een nieuwe lijngrafiek waarin maar één lijn verschijnt voor de route waarop geklikt is. Met een button is het vervolgens mogelijk om terug te gaan naar de grafiek met alle vluchtelingenroutes erin. Voor de rest titels en labels aan de assen toegevoegd aan de lijngrafieken.
 - De route blijft nu opgelicht wanneer de slider bewogen heeft: Zo weet de gebruiker altijd om welk jaar het gaat.
 - Begin gemaakt aan een probleem oplossen met de bargraph. Het is namelijk zo dat er landen zijn waar vluchtelingenaantallen van bepaalde herkomsten gelijk zijn aan elkaar. In dit geval verschijnen er meer dan 5 bars op de bargraph. Dit zorgt er weer voor dat de bargraph breder wordt dan normaal. Ik wil ervoor zorgen dat het mogelijk is om te scrollen wanneer dit het geval is. Dit is gelukt, maar de titel en y-as bewegen vooralsnog niet mee als er gescrolled wordt. Dit wil ik wel.
 - Morgen dus met de bagraph verder en ook bugs oplossen. Functionaliteit nu af.
 
-# day 15 (17 januari 2017)
+# day 15 (27 januari 2017)
 - Van het idee afgestapt dat ik de mogelijkheid tot scrollen aan de bargraph wil toevoegen. Aan de hand van feedback besloten dat ik nu gewoon de bars kleiner ga maken wanneer er meer dan 5 bars zijn. Dit is mij gelukt. Vanaf nu bugs fixen en vooral CSS om pagina er beter uit te laten zien.
+
+# weekend
+- Niet veel kunnen doen
+
+# day 16 (30 januari 2017)
+- Laout van de pagina zoals ik hem ongeveer wil hebben. Timeslider ook mooier gemaakt en buttons op goede plaats gezet.
+
+# day 17 (31 januari 2017)
+- Gewerkt aan het verslag.
+
+# day 18 (1 februari 2017)
+- Begonnen met all benodigde comments toevoegen aan code en verslag afgemaakt. Voor de rest begonnen met het overzichtelijker maken van de code.

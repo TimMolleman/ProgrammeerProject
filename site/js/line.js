@@ -10,14 +10,13 @@
  */
 var x_line,
 	y_line,
-	line_width,
-	line_height,
 	format,
-	margins,
 	route_name,
 	years,
 	xPos,
-	x;
+	x,
+	line_width,
+	line_height;
 
 /* This function is used to create a linegraph that contains lines for all routes */
 function createLine(refstreams)
@@ -39,21 +38,20 @@ function createLine(refstreams)
 		}
 	}
 
+	// determine height and width of the linegraphs
+	line_width = graph_width - margins.line.left - margins.line.right,
+	line_height = graph_height - margins.line.top - margins.line.bottom;
+
 	// transform data so that it can be used to draw the linegraph
 	var data = transformRefstreams(refstreams);
-
-	// define margins of linegraph
-	margins = {left: 120, right: 120, top: 50, bottom: 80},
-			width = 700 - margins.left - margins.right,
-			height = 500 - margins.bottom - margins.top;
-
+	console.log(data)
 	// define function for transforming stringed year to Javascript time object
 	format = d3.time.format("%Y");
 
 	// scale the x-axis data
 	x = d3.time.scale()
 			.domain(d3.extent(refstreams, function(d) { return format.parse(d.year); }))
-			.range([0, width])
+			.range([0, line_width])
 
 	// create the x-axis
 	var xAxis = d3.svg.axis()
@@ -63,7 +61,7 @@ function createLine(refstreams)
 	// scale the y-axis data		
 	var y = d3.scale.linear()
 		.domain(d3.extent(values, function(d) { return d; }))
-		.range([height, 0]);
+		.range([line_height, 0]);
 
 	// create the y-axis
 	var yAxis = d3.svg.axis()
@@ -82,16 +80,16 @@ function createLine(refstreams)
 
 	// create canvas to draw the linegraph on 
 	var canvas = d3.select(".line").append("svg")
-				.attr("width", width + margins.left + margins.right)
-				.attr("height", height + margins.bottom + margins.top)
+				.attr("width", line_width + margins.line.left + margins.line.right)
+				.attr("height", line_height + margins.line.bottom + margins.line.top)
 				.attr("class", "linegraph"),
 			g = canvas.append("g")
-				.attr("transform", "translate(" + margins.left + "," + margins.top + ")");
+				.attr("transform", "translate(" + margins.line.left + "," + margins.line.top + ")");
 
 	// call the x-axis
-	g.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
+	xAxis = g.append("g")
+		.attr("class", "x axis linegraph")
+		.attr("transform", "translate(0," + line_height + ")")
 		.call(xAxis)
 		.selectAll("text")
 		.style("text-anchor", "end")
@@ -99,25 +97,25 @@ function createLine(refstreams)
  		.attr("dx", "-.8em")
         .attr("dy", ".14em")
 
-	// add title to x-axis
-	// xAxis.append("text")
-	// 	.attr("class", "x label line")
-	// 	.text("Year")
-	// 	.attr("x", 220)
-	// 	.attr("y", 40);
+	d3.select(".x.axis.linegraph")
+		.append("text")
+		.attr("class", "x axis linegraph label")
+		.text("Year")
+		.attr("x", 240)
+		.attr("y", 70)
 
 	// call the y-axis
-	g.append("g")
-		.attr("class", "y axis")
+	yAxis = g.append("g")
+		.attr("class", "y axis linegraph")
 		.call(yAxis);
 
 	// add title to y-axis
-	// yAxis.append("text")
-	// 	.attr("class", "y label line")
-	// 	.attr("x", -200)
-	// 	.attr("y", -70)
-	// 	.attr("transform", "rotate(270)")
-	// 	.text("Refugees")
+	yAxis.append("text")
+		.attr("class", "y axis linegraph label")
+		.attr("x", -230)
+		.attr("y", -70)
+		.attr("transform", "rotate(270)")
+		.text("No. Illegal Border Crossings")
 
 	// add title to the linegraph
 	canvas.append("text")
@@ -125,7 +123,7 @@ function createLine(refstreams)
 			.attr("y", 20)
 			.attr("x", 120)
 			.text("Use of Migratory Routes to Europe by Refugees from 2006 to 2016");
-
+	console.log(data)
 	// append lines to the graph
 	g.selectAll(".line")
 		.data(data)
@@ -205,7 +203,7 @@ function createLine(refstreams)
 			// create linegraph of route that was clicked on
 			createLine2(refstreams);
 			
-			// hide the linetoggle button
+			// show the linetoggle button
 			d3.select("button.linetoggle").style("visibility", "visible")
 
 			// show tooltip at right position in linegraph
@@ -226,24 +224,24 @@ function createLine(refstreams)
 	    .style("stroke-dasharray", "4.5")
 	    .style("opacity", 0.0)
 	    .attr("y1", 0)
-	    .attr("y2", height);
+	    .attr("y2", line_height);
 
 	// append text element that will show the year on slider move
 	trackline.append("text")
 		.attr("class", "allroutes year")
-		.attr("x", 130)
+		.attr("x", 102)
 		.attr("y", 70)
 		.style("font-size", "11.5px");
 
 	trackline.append("text")
 		.attr("class", "allroutes route")
-		.attr("x", 130)
+		.attr("x", 102)
 		.attr("y", 82)
 		.style("font-size", "11.5px");
 
 	trackline.append("text")
 		.attr("class", "allroutes number")
-		.attr("x", 130)
+		.attr("x", 102)
 		.attr("y", 94)
 		.style("font-size", "11.5px");
 
@@ -276,11 +274,6 @@ function createLine2(refstreams)
 	// safe information on years and refugee numbers in variable
 	years = route_data.years;
 
-	// define margins of linegraph
-	margins = {left: 120, right: 120, top: 50, bottom: 75},
-			line_width = 700 - margins.left - margins.right,
-			line_height = 450 - margins.bottom - margins.top;
-
 	// scale the x-axis data
 	x_line = d3.time.scale()
 			.domain(d3.extent(years, function(d) { return format.parse(d.year); }))
@@ -308,16 +301,16 @@ function createLine2(refstreams)
 
 	// append canvas to .line div element for the linegraph
 	var canvas = d3.select(".line").append("svg")
-				.attr("width", line_width + margins.left + margins.right)
-				.attr("height", line_height + margins.bottom + margins.top)
+				.attr("width", line_width + margins.line.left + margins.line.right)
+				.attr("height", line_height + margins.line.bottom + margins.line.top)
 				.attr("class", "linegraph"),
 			g = canvas.append("g")
-				.attr("transform", "translate(" + margins.left + "," + margins.top + ")")
+				.attr("transform", "translate(" + margins.line.left + "," + margins.line.top + ")")
 				.attr("class", "graph");
 
 	// call the x-axis
 	 var xAxis = g.append("g")
-		.attr("class", "x axis")
+		.attr("class", "x axis line")
 		.attr("transform", "translate(0," + line_height + ")")
 		.call(xAxis)
 		.selectAll("text")
@@ -327,11 +320,12 @@ function createLine2(refstreams)
         .attr("dy", ".30em");
 
 	// add title to x-axis
-	xAxis.append("text")
-		.attr("class", "x label line")
+	d3.select(".x.axis.line")
+		.append("text")
+		.attr("class", "x axis line label")
 		.text("Year")
-		.attr("x", 220)
-		.attr("y", 40);
+		.attr("x", 240)
+		.attr("y", 70)
 
 	// call the y-axis
 	var yAxis = g.append("g")
@@ -340,18 +334,18 @@ function createLine2(refstreams)
 
 	// add title to y-axis
 	yAxis.append("text")
-		.attr("class", "y label line")
-		.attr("x", -200)
+		.attr("class", "y axis line label")
+		.attr("x", -230)
 		.attr("y", -70)
 		.attr("transform", "rotate(270)")
-		.text("Refugees")
+		.text("No. Illegal Border Crossings")
 
 	// add title to the linegraph
 	canvas.append("text")
 			.attr("class", "title")
-			.attr("y", 20)
+			.attr("y", 15)
 			.attr("x", 120)
-			.text("Number of Refugees Coming Into Europe by " + route_name);
+			.text("Number of Illegal Border Crossings via " + route_name);
 
 	// append line to the graph
 	g.append("path")
@@ -379,13 +373,13 @@ function createLine2(refstreams)
 	// append two text elements to focus for showing data value in top-left corner
 	focus.append("text")
 			.attr("class", "lineinfo year")
-			.attr("x", 130)
+			.attr("x", 103)
 			.attr("y", 70)
 			.style("font-size", "11.5px")
 
 	focus.append("text")
 			.attr("class", "lineinfo number")
-			.attr("x", 130)
+			.attr("x", 103)
 			.attr("y", 82)
 			.style("font-size", "11.5px")
 
@@ -416,7 +410,7 @@ function createLine2(refstreams)
 		.style("fill", "none")
 		.style("pointer-events", "all")
 		.attr("class", "overlay")
-		.attr("transform", "translate(" + margins.left + "," + margins.top + ")")
+		.attr("transform", "translate(" + margins.line.left + "," + margins.line.top + ")")
 		.attr("width", line_width)
 		.attr("height", line_height)
 		.on("mouseover", mouseOver)
@@ -493,8 +487,8 @@ function createLine2(refstreams)
       		d = x0 - format.parse(d0.year) > format.parse(d1.year) - x0 ? d1 : d0;
 
   		// get coördinates of new position of the dot
-  		var xPos = x_line(format.parse(d.year)) + margins.left,
-  			yPos = y_line(d.number) + margins.top;
+  		var xPos = x_line(format.parse(d.year)) + margins.line.left,
+  			yPos = y_line(d.number) + margins.line.top;
 
       	// move the dot to right positions on line
   		focus.select("circle.refnumber")
@@ -514,12 +508,12 @@ function createLine2(refstreams)
 	    		.style("opacity", 0.5)
 			    .attr("transform",
 			            "translate(" + xPos + "," +
-			                            + margins.top + ")");
+			                            + margins.line.top + ")");
 
 		focus.select(".horline")
 				.style("opacity", 0.5)
 				.attr("transform",
-			            "translate(" + margins.left + "," +
+			            "translate(" + margins.line.left + "," +
 			                            + yPos + ")");
     };
 };
@@ -595,8 +589,8 @@ function dotLine() {
 			// append dot to the linegraph
 			focus.append("circle")
 				.attr("class", "dotline")
-				.attr("cx", x_line(format.parse(line_data.year)) + margins.left)
-				.attr("cy", y_line(line_data.number) + margins.top)
+				.attr("cx", x_line(format.parse(line_data.year)) + margins.line.left)
+				.attr("cy", y_line(line_data.number) + margins.line.top)
 				.style("r", "0px")
 				.style("fill", "red")
 				.transition().duration(300)
@@ -616,22 +610,22 @@ function dotLine() {
 					.style("fill", "orange");
 
 			// determine x and y positions for crosshairs 
-			var xPos = x_line(format.parse(line_data.year)) + margins.left,
-					yPos = y_line(line_data.number) + margins.top;
+			var xPos = x_line(format.parse(line_data.year)) + margins.line.left,
+					yPos = y_line(line_data.number) + margins.line.top;
 
 			// change position of the crosshair
 		    d3.select(".verline2")
 		    		.style("opacity", 0)
 				    .attr("transform",
 				            "translate(" + xPos + "," 
-				                            + margins.top + ")")
+				                            + margins.line.top + ")")
 				    .transition().duration(300)
 				    .style("opacity", 0.5)
 
 			d3.select(".horline2")
 					.style("opacity", 0)
 					.attr("transform",
-							"translate(" + margins.left + "," + 
+							"translate(" + margins.line.left + "," + 
 											yPos + ")")
 					.transition().duration(300)
 					.style("opacity", 0.5)
@@ -671,17 +665,18 @@ function dotLine() {
 /* This function is used for showing the trackline if all routes are in linegraph */
 function trackLine() {
 		// get the x position of the line when slider is changed
-		xPos = x(format.parse(String(cur_year))) + margins.left;
+		xPos = x(format.parse(String(cur_year))) + margins.line.left;
 
 		// make trackline appear at the right position
 		d3.select(".track")
 	    		.style("opacity", 0.5)
 			    .attr("transform",
-			            "translate(" + xPos + "," + margins.top + ")");
+			            "translate(" + xPos + "," + margins.line.top + ")");
 
 		// show current year in the linegraph
 		d3.select("text.allroutes")
 	    	.text("Year: " + cur_year);
 };
+
 
 

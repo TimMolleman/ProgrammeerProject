@@ -31,7 +31,6 @@ footer {
 	height: 500px;
 	margin: 0 auto;
 	text-align: center;
-	/*padding:20px;*/
 	position: absolute;
 }
 #navigation {
@@ -170,8 +169,8 @@ footer {
 }
 div .butcontainer {
 	position: relative;
-	top: 60px;
-    left: -185px;
+	top: 58px;
+    left: -170px;
 }
 .btn-default {
 	background: #405580;
@@ -198,6 +197,18 @@ div .butcontainer {
 	background: #405580;
 	color: white;
 }
+
+.x.axis.label 
+{
+	font-size: 20px;
+}
+.y.axis.label
+{
+	font-size: 12px;
+}
+
+
+
 input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;

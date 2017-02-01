@@ -5,7 +5,6 @@
  *
  * This Javascript file contains all functions that have anything to do with manipulating the data stored 
  * in the refugees.json and migrants.json files (in 'data' folder) and with manipulating data in general.
- * (exclusions are data manipulations for the barchart: Those are stored in 'bar.js')
  *
  * NOTE: data.js has to be loaded first
  */
@@ -26,6 +25,62 @@ function findCountry(current_data, current_country) {
 		}
 	}
 	return country_data;
+};
+
+/* 
+ * Function requires a dataset that was created with the 'findCountry' function.
+ * It returns an array with at least 5 objects. These are the 5 (or more) countries where most
+ * refugees came from for the given year and clicked on country. Each object 
+ * contains name of the country and the number of refugees. 
+ */
+function storeRefugees(country_data) {
+
+	// check if country_data is defined, else return 'false'
+	if (country_data == undefined)
+	{
+		return undefined;
+	}
+
+	// arrays for storing data of refugees based on 5 (or more) most prevalent origins
+	var max_value = [];
+	var max_data = [];
+
+	// loop for 5 times, to store 5 (or more) of the countries with largest amount of refugees
+	for (i = 0; i < 5; i++)
+	{
+		max = 0
+		for (j = 0; j < country_data.refugees.length; j++)
+		{
+			if (max_value.length == 0)
+			{
+				if (Number(country_data.refugees[j].number) > max)
+				max = Number(country_data.refugees[j].number);
+			}
+			else
+			{
+				if (max_value.includes(Number(country_data.refugees[j].number)))
+				{
+					continue;
+				}
+				else if (Number(country_data.refugees[j].number > max))
+				{
+					max = Number(country_data.refugees[j].number);
+				}
+			}
+		}
+		max_value.push(max);
+	}
+
+	for (k = 0; k < max_value.length; k++)
+		{
+		for (j = 0; j < country_data.refugees.length; j++)
+			if (Number(country_data.refugees[j].number) == max_value[k])
+			{
+				country_data.refugees[j].number = Number(country_data.refugees[j].number)
+				max_data.push(country_data.refugees[j]);
+			}
+		}
+	return max_data;
 };
 
 /* Function finds route that is clicked on in the datamap. */
@@ -230,6 +285,22 @@ function transformRefstreams(refstreams)
 		}
 	}
 	return data;
+};
+
+/* 
+ * Function finds the right number of refugees and year for 'data' and returns these
+ * values. The 'data' argument should contain a refstreams dataset already transformed
+ * by using the transformRefstreams function.
+ */
+function findRouteNumber(data) {
+	// loop through the data until right year is found and return values
+	for (i = 0; i < data.years.length; i++) 
+	{
+		if (data.years[i].year == cur_year) 
+		{
+			return [data.years[i].number, data.years[i].year];
+		}
+	}
 };
 
 /* Function that returns an integers with commas after every 3 numbers */
