@@ -1,4 +1,4 @@
-#Programmeerproject voorstel
+#Programmeerproject
 ####Tim Molleman
 
 ##Doel van het Project
@@ -9,8 +9,7 @@ In Europa is er sinds 2015 sprake van een grote stroom illegale immigranten - be
 De visualisaties in mijn applicatie moeten gebruikers een duidelijker beeld geven over bepaalde aspecten van deze migratiecrisis. Hierdoor kunnen zij voor zichzelf een beter beeld krijgen over hoe groot het probleem nou daadwerkelijk is en kunnen ze beter geïnformeerde standpunten innemen over de migratiecrisis.
 
 ##Vormgeving en eigenschappen visualisaties
-Hoe ga ik deze visualisaties vormgeven? Ik wil een website maken met twee pagina's die allebei een eigen functie vervullen in het aanbieden van informatie over het migratieprobleem. Index.html zal een stuk informatieve tekst bevatten die de visualisaties in data.html
-Hiervoor zal ik waarschijnlijk 3 webpagina's gebruiken, met als titels: 'Home', 'Migration Routes' en 'Migrant Growth'. Ik zal hieronder een schets laten zien voor elke pagina en uitleg geven over deze pagina.
+Hoe ga ik deze visualisaties vormgeven? Ik heb een website gemaakt met twee pagina's die allebei een eigen functie vervullen in het aanbieden van informatie over het migratieprobleem. Index.html bevat een stuk informatieve tekst die de visualisaties in data.html context geven. Hieronder staan foto's van de beide pagina's en staat er uitgelegd wat 
 
 ###Home:
 ![](doc/home.jpg)
@@ -58,8 +57,8 @@ Dingen die ik nog zou kunnen toevoegen als er tijd is (optioneel):
 ##Gelijkmatige implementaties
 Er zijn op het web al best veel visualizaties te vinden om meer over de migratiecrisis duidelijk te maken. Zij gebruiken vaak barcharts om aantallen weer te geven, en kaarten in combinatie met pijlen om migratieroutes weer te geven.
 
-# Laatste Readme Shizzle
-####Tim Molleman
+## Cijfer voor CodeHub
+Codehub gaf een 5 met libraries erin. Zonder externe code krijg ik een 7
 
 ## Externe Bronnen 
 ###Gebruikte Foto's voor Slider

@@ -150,7 +150,6 @@ function analyze(error, migrants, refstreams) {
 			});
 	};
 
-	// call above functions
 	clickRoutesButton()
 	clickLineButton();
 };
