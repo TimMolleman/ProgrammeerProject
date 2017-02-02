@@ -2,14 +2,15 @@
 ####Tim Molleman
 
 ##Doel van het Project
-Het project heeft als doel om gebruikers meer statistische informatie te verschaffen over immigratiestromen richting Europa. Om dit doel te bereiken zullen er 2 datamaps, een barchart en een lijngrafiek worden gebruikt. Deze zullen op een website met verschillende pagina's worden weergegeven in combinatie met stukken tekstuele informatie.
+Het project heeft als doel om gebruikers meer statistische informatie te verschaffen over immigratiestromen richting Europa. Om dit doel te bereiken zijn er drie visualisaties gemaakt die aan elkaar verbonden zijn, namelijk een datamap, een barchart en een lijngrafiek.
 
 ##Het Probleem
-In Europa is er sinds 2015 sprake van een grote stroom migranten (vaak aangeduid als 'vluchtelingen') - bestaande uit zowel echte vluchtelingen als gelukszoekers die zich voordoen als vluchtelingen - die een nieuw thuis proberen te vinden in Europese landen. Er is zelfs sprake van een ware migratiecrisis. Mede door deze crisis zijn er veel politieke spanningen ontstaan in veel Europese landen.
-In mijn applicatie wil ik gebruikers visualizaties aanbieden die voor hen een duidelijker en coherenter beeld kunnen scheppen over bepaalde aspecten van deze migratiecrisis. Hierdoor kunnen zij voor zichzelf een beter beeld krijgen over hoe groot het probleem nou daadwerkelijk is en kunnen ze beter geïnformeerde standpunten innemen over de migratiecrisis.
+In Europa is er sinds 2015 sprake van een grote stroom illegale immigranten - bestaande uit zowel vluchtelingen als gelukszoekers die zich voordoen als vluchtelingen - die een nieuw thuis proberen te vinden in Europese landen. Er is zelfs sprake van een ware migratiecrisis. Mede door deze crisis zijn er veel politieke spanningen ontstaan in veel Europese landen.
+De visualisaties in mijn applicatie moeten gebruikers een duidelijker beeld geven over bepaalde aspecten van deze migratiecrisis. Hierdoor kunnen zij voor zichzelf een beter beeld krijgen over hoe groot het probleem nou daadwerkelijk is en kunnen ze beter geïnformeerde standpunten innemen over de migratiecrisis.
 
-##Vormgeving en eigenschappen visualizatie(s)
-Hoe ga ik deze visualizaties vormgeven? Ik wil een website maken met verschillende pagina's die allen een eigen functie vervullen in het aanbieden van informatie over het migratieprobleem. Hiervoor zal ik waarschijnlijk 3 webpagina's gebruiken, met als titels: 'Home', 'Migration Routes' en 'Migrant Growth'. Ik zal hieronder een schets laten zien voor elke pagina en uitleg geven over deze pagina.
+##Vormgeving en eigenschappen visualisaties
+Hoe ga ik deze visualisaties vormgeven? Ik wil een website maken met twee pagina's die allebei een eigen functie vervullen in het aanbieden van informatie over het migratieprobleem. Index.html zal een stuk informatieve tekst bevatten die de visualisaties in data.html
+Hiervoor zal ik waarschijnlijk 3 webpagina's gebruiken, met als titels: 'Home', 'Migration Routes' en 'Migrant Growth'. Ik zal hieronder een schets laten zien voor elke pagina en uitleg geven over deze pagina.
 
 ###Home:
 ![](doc/home.jpg)
