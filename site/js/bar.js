@@ -91,10 +91,11 @@ function createBarchart(year, migrants) {
 
 		// add title to the graph
 		canvas.append("text")
-				.attr("y", -30)
-				.attr("x", 60)
-				.text("Top " + max_data.length + " countries of refugee origins for " + cur_country_name + 
-					" (" + cur_year + ")");
+			.attr("class", "title")
+			.attr("y", -30)
+			.attr("x", 30)
+			.text("Top " + max_data.length + " Countries of Origins of Asylum Seekers for " + cur_country_name + 
+				" (" + cur_year + ")");
 
 		// add x-axis to canvas
 		canvas.append("g")
@@ -103,7 +104,7 @@ function createBarchart(year, migrants) {
 			.call(xAxis)
 			.selectAll("text")
 			.style("text-anchor", "end")
-			.attr("transform", "rotate(-50)")
+			.attr("transform", "rotate(-40)")
 	 		.attr("dx", "-.8em")
 	        .attr("dy", ".15em")
 
@@ -112,8 +113,8 @@ function createBarchart(year, migrants) {
 	        .append("text")
 	    	.attr("class", "x axis bar label")
 	    	.text("Origin")
-	    	.attr("x", 210)
-	    	.attr("y", 70)
+	    	.attr("x", 200)
+	    	.attr("y", 80)
 
 		// add y-axis and label to canvas
 		canvas.append("g")
@@ -121,9 +122,9 @@ function createBarchart(year, migrants) {
 		.call(yAxis)
 		.append("text")
 		.attr("class", "y axis bar label")
-		.text("Number of Refugees")
-		.attr("x", -240)
-		.attr("y", -65)
+		.text("No. of First Time Asylum Applicants")
+		.attr("x", -260)
+		.attr("y", -70)
 		.attr("transform", "rotate(270)")
 
 		// add g-element for every datapoint in max_data 

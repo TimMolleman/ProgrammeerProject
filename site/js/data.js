@@ -72,18 +72,23 @@ function storeRefugees(country_data) {
 	}
 
 	for (k = 0; k < max_value.length; k++)
-		{
+	{
 		for (j = 0; j < country_data.refugees.length; j++)
+		{
 			if (Number(country_data.refugees[j].number) == max_value[k])
 			{
-				country_data.refugees[j].number = Number(country_data.refugees[j].number)
+				country_data.refugees[j].number = Number(country_data.refugees[j].number);
 				max_data.push(country_data.refugees[j]);
 			}
 		}
+	}
 	return max_data;
 };
 
-/* Function finds route that is clicked on in the datamap. */
+/* 
+Function finds route that is clicked on in the datamap so line can be drawn
+or highlighted for this route.
+ */
 function findRoute(refstreams, current_route) {
 	for (i = 0; i < refstreams.length; i++) 
 	{

@@ -16,7 +16,6 @@ function createMap(year, migrants)
 	var cur_data = currentData(year, migrants),
 		dataset = createFillData(cur_data);
 
-	console.log(migrants)
 	// create choropleth map
 	var basic = new Datamap({
 	element: document.getElementById("map"),
@@ -110,7 +109,7 @@ function createLegend()
 	// also append text for every data-object in legend_data
 	legend.append("text")
 	.attr("x", 45)
-	.attr("y", function(d, i) { return 196 + (i * 20); })
+	.attr("y", function(d, i) { return 195 + (i * 20); })
 	.text(function(d) { return d.label})
 
 	// add title to legend
@@ -118,6 +117,14 @@ function createLegend()
 	.attr("class", "legend-title")
 	.attr("x", 20)
 	.attr("y", 360)
-	.style("font-size", "11px")
-	.html(function() { return "Number of First Time<br> Asylum Applicants (x1000)" })
+	.style("font-size", "11.5px")
+	.text(function() { return "Number of First Time"; })
+
+	// add title to legend
+	legend.append("text")
+	.attr("class", "legend-title")
+	.attr("x", 20)
+	.attr("y", 380)
+	.style("font-size", "11.5px")
+	.text(function() { return "Asylum Applicants (x1000)"; })
 };

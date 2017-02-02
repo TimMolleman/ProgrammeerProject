@@ -8,6 +8,7 @@
  *
  * NOTE: data.js needs to be loaded for the below functions to work
  */
+
 var x_line,
 	y_line,
 	format = d3.time.format("%Y"),
@@ -69,12 +70,13 @@ function createLine(refstreams)
 	callyAxis(g, yAxis);
 	addLineTitle(canvas, "all");
 
+	// add title to x-axis
 	d3.select(".x.axis.linegraph")
 		.append("text")
 		.attr("class", "x axis linegraph label")
 		.text("Year")
-		.attr("x", 240)
-		.attr("y", 70)
+		.attr("x", 230)
+		.attr("y", 80)
 
 	// append lines to the graph
 	g.selectAll(".line")
@@ -114,13 +116,13 @@ function createLine(refstreams)
 			if (ref_data != undefined)
 			{
 				d3.select(".allroutes.number")
-					.text("No. Refugees: " + numberWithCommas(ref_data[0]));
+					.text("No. Crossings: " + numberWithCommas(ref_data[0]));
 			}
 			// else mention that there is no data known
 			else
 			{
 				d3.select(".allroutes.number")
-					.text("No. Refugees: Unknown");
+					.text("No. Crossings: Unknown");
 			}
 
 			
@@ -244,12 +246,12 @@ function createLine2(refstreams)
 	addLineTitle(canvas, "single");
 
 	// add title to x-axis
-	d3.select(".x.axis.line")
+	d3.select(".x.axis.linegraph")
 		.append("text")
-		.attr("class", "x axis line label")
+		.attr("class", "x axis linegraph label")
 		.text("Year")
-		.attr("x", 240)
-		.attr("y", 70)
+		.attr("x", 230)
+		.attr("y", 80)
 
 	// append line to the graph
 	g.append("path")
@@ -405,7 +407,7 @@ function createLine2(refstreams)
 	    	.text("Year: " + d.year);
 	    
 	    focus.select("text.lineinfo.number")
-	    	.text("No. Refugees: " + numberWithCommas(d.number));
+	    	.text("No. Crossings: " + numberWithCommas(d.number));
 
 	    // change position of the crosshair
 	    focus.select(".verline")
@@ -544,7 +546,7 @@ function dotLine() {
 					.text("Year: " + cur_year)
 
 			d3.select(".lineinfo.number")
-				    .text("No. Refugees: " + numberWithCommas(line_data.number))
+				    .text("No. Crossings: " + numberWithCommas(line_data.number))
 		}
 		else
 		{
@@ -639,7 +641,7 @@ function callxAxis(g, xAxis) {
 		.call(xAxis)
 		.selectAll("text")
 		.style("text-anchor", "end")
-		.attr("transform", "rotate(-50)")
+		.attr("transform", "rotate(-40)")
  		.attr("dx", "-.8em")
         .attr("dy", ".14em")
 };
@@ -651,7 +653,7 @@ function callyAxis(g, yAxis) {
 		.call(yAxis)
 		.append("text")
 		.attr("class", "y axis linegraph label")
-		.attr("x", -230)
+		.attr("x", -240)
 		.attr("y", -70)
 		.attr("transform", "rotate(270)")
 		.text("No. Illegal Border Crossings")
@@ -663,13 +665,13 @@ function addLineTitle(canvas, linetype) {
 	canvas.append("text")
 			.attr("class", "title")
 			.attr("y", 20)
-			.attr("x", 120)
+			.attr("x", 145)
 			.text(function() {
 				if (linetype == "all") {
-					return "Use of Migratory Routes to Europe by Refugees from 2006 to 2016"
+					return "Illegal Border Crossings for All Migratory Routes (2006-2016)"
 				}
 				else {
-					return "Number of Illegal Border Crossings via " + route_name
+					return "Illegal Border Crossings by " + route_name
 				}
 			});
 }; 

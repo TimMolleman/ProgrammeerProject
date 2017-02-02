@@ -70,12 +70,15 @@ function drawCircles(refstreams) {
 			/* Creates linegraph for the route that was clicked on in map */
 			function clickFunction() {
 
-				if (route_name != undefined) // XXX
 				// change current route circle to red if it is still orange
-				d3.select("." + route_name.split(' ').join('.'))
+				if (route_name != undefined)
+				{
+					d3.select("." + route_name.split(' ').join('.'))
 					.transition().duration(300)
 					.style("fill", "red");
 
+				}
+				
 				// get the classname (route) of circle that is clicked on
 				route_name = d3.select(this)[0][0].className.baseVal;
 

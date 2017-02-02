@@ -13,7 +13,7 @@ var cur_year,
 	routes_toggle = 1;
 
 // define global variables for width, height and margins for barchart and linegraphs
-var margins = {line: {left: 90, right: 40, top: 50, bottom: 100}, bar: {top: 50, left: 100, bottom: 100, right: 50}},
+var margins = {line: {top: 50, left: 90, bottom: 100, right: 40}, bar: {top: 50, left: 90, bottom: 100, right: 50}},
 	graph_width = 620,
 	graph_height = 475;
 

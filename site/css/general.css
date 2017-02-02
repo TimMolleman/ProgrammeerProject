@@ -1,3 +1,12 @@
+/**
+ * general.css
+ * 
+ * Tim Molleman
+ *
+ * This CSS file contains the bulk of css for index.html and data.html
+ *
+ */
+
 * {
 	margin: 0;
 	border: 0;
@@ -8,52 +17,35 @@ body {
 	background: #F0F0F0;
 }
 h1 {
-	padding: 1%;
+	padding: 2%;
 }
 h3 {
 	padding: 1%;
 }
 p {
 	padding: 1%;
-	font-size: 14px;
+	font-size: 15px;
 	text-align: justify;
+	line-height: 150%;
+
 }
 footer {
-	margin-top: 60px;
+	position: absolute;
+	margin-top: 70px;
 	height: 40px;
 	background: #333333;
 	width: 100%;
 	opacity: .9;
-	box-shadow: 0px 500px 0px 500px #333333;
 }
-#map {
-	width: 700px;
-	height: 500px;
-	margin: 0 auto;
+.clear {
+	height: 85px;
+}
+.info {
 	text-align: center;
-	position: absolute;
-}
-#navigation {
-	float: right;
-	padding: 20px 50px 20px 20px;
-}
-#navigation ul li{
-	display: inline-block;
-	float: left;
-	padding: 10px;
-	font-size: 24px;
-}
-#navigation ul li a .current {
-	color: black;
-}
-#navigation ul li a {
-	color: white;
-	display: inline-block;
-	text-decoration: none;
-}
-#navigation ul li a:hover{
-	text-decoration: underline;
-	opacity: 0.9;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 1%;
 }
 #header {
 	width: 100%;
@@ -73,6 +65,25 @@ footer {
 #header h1:hover {
 	opacity: 0.9;
 }
+#navigation {
+	float: right;
+	padding: 20px 50px 20px 20px;
+}
+#navigation ul li{
+	display: inline-block;
+	float: left;
+	padding: 10px;
+	font-size: 24px;
+}
+#navigation ul li a {
+	color: white;
+	display: inline-block;
+	text-decoration: none;
+}
+#navigation ul li a:hover{
+	text-decoration: underline;
+	opacity: 0.9;
+}
 #doc {
 	margin: 40px 0;
 }
@@ -84,56 +95,23 @@ footer {
 .blueberry {
 	max-width: 700px;
 }
-.clear {
-	height: 85px;
-	padding: 1%;
-}
-.info {
-	text-align: center;
-	width: 60%;
-	margin: 0 auto;
-	padding: 1%;
-}
-.info p {
-	line-height: 150%;
-}
-#slider {
-	width: 30%;
-	margin-left: auto;
-	margin-right: auto;
-}
-.bar.x.axis {
-	overflow: scroll;
-}
 #mapcontainer {
-	padding-top: 10px;
+	padding-top: 20px;
 	padding-bottom: 10px;
 	border: solid 1px;
 	width: 1300px;
-	margin: 0 auto;
-}
-.graphcontainer { 
-    width: 1300px;
-    text-align: center;
-    margin: 0 auto;
-    border: solid 1px;
-}
-.bar, .line {
-	display: inline-block;
-}
-.show-year {
-	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 20px;
-	margin-top: 20px;
-	padding: 5px 10px;
-	text-align: center;
-	width: 20%;
-	background-color: #405580;
-	color: white;
-	opacity: 0.9;
-	border-radius: 10px;
-	border: solid 3px #19334d;
+	margin-right: auto;
+}
+#map {
+	width: 700px;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.datamap 
+{
+	background: white;
 }
 .popup
 {
@@ -142,10 +120,17 @@ footer {
 	border-style: solid;
 	background-color: white;
 	font-size: 12px;
+	text-align: center;
 }
-.datamap 
-{
-	background: white;
+.graphcontainer { 
+    width: 1300px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid 1px;
+}
+.bar, .line {
+	display: inline-block;
 }
 .d3tip 
 {
@@ -156,6 +141,15 @@ footer {
 	color: #fff;
 	border-radius: 10px;
 }
+.x.axis.label
+{
+	font-size: 17px;
+	font-weight: 500;
+}
+.y.axis.label
+{
+	font-size: 13px;
+}
 .axis path,
 .axis line
 {
@@ -163,10 +157,7 @@ footer {
   	stroke: #000;
   	shape-rendering: crispEdges;
 }
-.x.axis path
-{
-	/*display: none;*/
-}
+
 div .butcontainer {
 	position: relative;
 	top: 58px;
@@ -190,109 +181,25 @@ div .butcontainer {
     background: #405580;
     color: white;
     opacity: 0.9;
-
 }
 .btn-default:hover {
 	opacity: 1.0;
 	background: #405580;
 	color: white;
 }
-
-.x.axis.label 
-{
-	font-size: 20px;
+#slider {
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
 }
-.y.axis.label
-{
-	font-size: 12px;
-}
-
-
-
-input[type=range] {
-  -webkit-appearance: none;
-  margin: 10px 0;
-  width: 100%;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 12px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 3px 3px 4px #000000;
-  background: #405580;
-  border-radius: 1px;
-  border: 0px solid #010101;
-}
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000031;
-  border: 1px solid #00001E;
-  height: 26px;
-  width: 26px;
-  border-radius: 13px;
-  background: #FFFFFF;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -7.5px;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #405580;
-}
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 12px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 3px 3px 4px #000000;
-  background: #405580;
-  border-radius: 1px;
-  border: 0px solid #010101;
-}
-input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000031;
-  border: 1px solid #00001E;
-  height: 26px;
-  width: 26px;
-  border-radius: 13px;
-  background: #FFFFFF;
-  cursor: pointer;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 12px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #405580;
-  border: 0px solid #010101;
-  border-radius: 2px;
-  box-shadow: 3px 3px 4px #000000;
-}
-input[type=range]::-ms-fill-upper {
-  background: #405580;
-  border: 0px solid #010101;
-  border-radius: 2px;
-  box-shadow: 3px 3px 4px #000000;
-}
-input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000031;
-  border: 1px solid #00001E;
-  height: 26px;
-  width: 26px;
-  border-radius: 13px;
-  background: #FFFFFF;
-  cursor: pointer;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #405580;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #405580;
+.show-year {
+	margin: 20px auto;
+	padding: 5px 10px;
+	text-align: center;
+	width: 20%;
+	background-color: #405580;
+	color: white;
+	opacity: 0.9;
+	border-radius: 10px;
+	border: solid 3px #19334d;
 }
