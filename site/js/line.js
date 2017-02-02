@@ -9,6 +9,7 @@
  * NOTE: data.js needs to be loaded for the below functions to work
  */
 
+// define global variables
 var x_line,
 	y_line,
 	format = d3.time.format("%Y"),
@@ -124,8 +125,6 @@ function createLine(refstreams)
 				d3.select(".allroutes.number")
 					.text("No. Crossings: Unknown");
 			}
-
-			
 		})
 		.on("mouseout", function(d) {
 			d3.select(this)

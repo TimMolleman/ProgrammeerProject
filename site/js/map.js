@@ -62,11 +62,15 @@ function createMap(year, migrants)
 	// add legend to datamap
 	createLegend();
 
-	// append
+	// append the routes-toggle button
 	d3.select("#map").append("button")
 		.attr("class", "routestoggle btn btn-default")
 		.attr("type", "button")
 		.text("Toggle Routes (On)")
+
+	// add title to the datamap
+	d3.select(".maptitle")
+		.text("First Time Asylum Applicants per Country and Use of Migratory Routes in " + cur_year);
 
 	// return the map object
 	return basic;
@@ -78,6 +82,10 @@ function updateMap (year, migrants)
 	// find migrants data for current year and create filldata based on this
 	var cur_data = currentData(year, migrants),
 		dataset = createFillData(cur_data);
+
+	// update title of the datamap
+	d3.select(".maptitle")
+		.text("First Time Asylum Applicants per Country and Use of Migratory Routes in " + cur_year);
 
 	// update colors on map according to map_data
 	map.updateChoropleth(dataset);	

@@ -1,3 +1,14 @@
+/**
+ * index.js
+ * 
+ * Tim Molleman
+ *
+ * This Javascript file puts all the functions in the other js files together
+ * when the page is loaded.
+ *
+ * NOTE: data.js needs to be loaded for the below functions to work
+ */
+
 // queue the json-files so they can be loaded in later
 d3.queue()
   .defer(d3.json, "/ProgrammeerProject/site/data/migrants.json")
@@ -129,7 +140,6 @@ function analyze(error, migrants, refstreams) {
 				}
 			});
 	};
-
 	/* Function allows the user to switch back to linegraph with all routes present */
 	function clickLineButton() {
 		d3.select("button.linetoggle")

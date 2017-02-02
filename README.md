@@ -13,12 +13,12 @@ Hoe ga ik deze visualisaties vormgeven? Ik heb een website gemaakt met twee pagi
 
 ###Index.html:
 ![](doc/readmepics/UpperIndex.png)
-![](doc/readmepics/belowIndex.png)
+![](doc/readmepics/BelowIndex.png)
 
 Op deze pagina staat informatie over de geschiedenis van Europa ten aanzien van illegale immigratie en de Europese immigratiecrisis van 2015. De informatie wordt gegeven in5 paragrafen. Aan het einde is er nog een paragraaf die duidelijk maakt wat het doel is van de website/applicatie.
 
 ###Data.html
-![](doc/readmepics/upperData.png)
+![](doc/readmepics/UpperData.png)
 ![](doc/readmepics/DatamapPic.png)
 ![](doc/readmepics/GraphsPic.png)
 

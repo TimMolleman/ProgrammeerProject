@@ -27,15 +27,20 @@ p {
 	font-size: 15px;
 	text-align: justify;
 	line-height: 150%;
-
 }
 footer {
 	position: absolute;
 	margin-top: 70px;
+	overflow: hidden;
 	height: 40px;
 	background: #333333;
 	width: 100%;
 	opacity: .9;
+	color: white;
+	overflow: hidden;
+}
+footer p {
+	text-align: center;
 }
 .clear {
 	height: 85px;
@@ -46,6 +51,10 @@ footer {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 1%;
+}
+.pager li>a, .pager li>span {
+	background-color: #F0F0F0 !important; 
+	border: #F0F0F0 !important;
 }
 #header {
 	width: 100%;
@@ -112,6 +121,13 @@ footer {
 .datamap 
 {
 	background: white;
+}
+.maptitle {
+    top: -10px;
+    left: 350px;
+    position: relative;
+    font-size: 15px;
+    font-weight: 600;
 }
 .popup
 {
