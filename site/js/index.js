@@ -1,7 +1,7 @@
 // queue the json-files so they can be loaded in later
 d3.queue()
-  .defer(d3.json, "/site/data/migrants2.json")
-  .defer(d3.json, "/site/data/refstreams.json")
+  .defer(d3.json, "/ProgrammeerProject/site/data/migrants2.json")
+  .defer(d3.json, "/ProgrammeerProject/site/data/refstreams.json")
   .await(analyze);
 
 // define global variables
