@@ -1,5 +1,8 @@
 # EindVerslag
 ###Tim Molleman
+
+![](doc/readmepics/UpperData.png)
+
 ## Overzicht Applicatie
 In mijn applicatie bied ik gebruikers informatie over - voornamelijk illegale - migratiestromen naar Europese landen vanuit landen buiten Europa. De applicatie bevat informatie van de jaren 2006 tot en met 2016. De eerste html-pagina van de applicatie bevat tekstuele informatie over illegale immigratie naar Europa en het doel van de applicatie. Dit doel wordt verwezenlijkt door drie visualisaties die op de tweede html-pagina beschikbaar zijn. De eerste visualisatie is een datamap die update aan de hand van een timeslider met de jaren 2006-2016 erop. In de datamap wordt ieder land ingekleurd aan de hand van hoeveel mensen voor het eerst een asielaanvraag hebben gedaan in deze landen in het jaar op de timeslider. Hiernaast zijn er op de datamap cirkels aanwezig die migratieroutes richting Europa aangeven. De grootte van iedere cirkel wordt bepaald door het aantal illegale grens oversteken dat er via die route gemaakt is naar een Europees land om Europa binnen te komen.
 
@@ -73,6 +76,7 @@ Ik heb bij het implementeren van de datamap de twee ideeën voor de datamaps in 
 ###Verantwoording voor Uiteindelijke Versie
 De uiteindelijke versie is een stuk overzichtelijker dan het originele idee. Hiernaast zijn nu alle visualisaties gelinkt, iets wat niet zo was bij het originele idee. Het de gebruiker mogelijk maken om zowel alle routes te zien in een lijngrafiek als aparte routes is ook een verbetering. De grafiek met alle routes biedt een globaal overzicht, en wanneer de gebruiker geïnteresseerd is in een specifieke route kan hij/zij deze route simpelweg aanklikken. Het toevoegen van de informatiepagina geeft de gebruiker hiernaast direct informatie over de migratiecrisis en het doel van de applicatie alvorens naar de kern van de applicatie (de visualisaties) te verwijzen. Hoewel ik eerst dacht dat het samenvoegen van de twee originele ideeën voor de twee originele datamaps in één datamap deze datamap onoverzichtelijk zou maken, valt dit uiteindelijk reuze mee. De cirkels zijn over het algemeen niet groot genoeg om hele landen te bestaan. Ook kan de gebruiker er nog voor kiezen om de cirkels te verwijderen als hij/zij deze toch onoverzichtelijk vindt. Hiernaast biedt het samenvoegen van deze ideeën voor visualisaties de gebruiker zelfs meer informatie dan bij het originele design. De gebruiker ziet namelijk in één oogopslag de samenhang tussen het aantal illegale grensoversteken naar Europese landen en de groei van asielaanvragen in Europese landen. Als ik nog meer tijd had, zou ik het mogelijk maken voor de gebruiker om de kaart naar een wereldniveau uit te zoomen, zodat ik bogen kon toevoegen van Europese landen naar de herkomstlanden van asielzoekers. Voor de rest ben ik tevreden met het veranderen van mijn designkeuzes en de daadwerkelijke implementatie van deze keuzes.
 
-
+###Noot
+Codehub gaf mijn repository een 5 met externe (niet zelf geschreven) code erin. Zonder externe code gaf Codehub een 7.
 
 

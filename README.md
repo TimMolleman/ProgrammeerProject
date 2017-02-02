@@ -1,8 +1,8 @@
-#Programmeerproject
+#Europe's Migration Crisis
 ####Tim Molleman
 
 ##Doel van het Project
-Het project heeft als doel om gebruikers meer statistische informatie te verschaffen over immigratiestromen richting Europa. Om dit doel te bereiken zijn er drie visualisaties gemaakt die aan elkaar verbonden zijn, namelijk een datamap, een barchart en een lijngrafiek.
+Het project heeft als doel om gebruikers meer statistische informatie te verschaffen over immigratiestromen richting Europa tussen 2006 en 2016. Om dit doel te bereiken zijn er drie visualisaties gemaakt die aan elkaar verbonden zijn, namelijk een datamap, een barchart en een lijngrafiek.
 
 ##Het Probleem
 In Europa is er sinds 2015 sprake van een grote stroom illegale immigranten - bestaande uit zowel vluchtelingen als gelukszoekers die zich voordoen als vluchtelingen - die een nieuw thuis proberen te vinden in Europese landen. Er is zelfs sprake van een ware migratiecrisis. Mede door deze crisis zijn er veel politieke spanningen ontstaan in veel Europese landen.
@@ -11,54 +11,32 @@ De visualisaties in mijn applicatie moeten gebruikers een duidelijker beeld geve
 ##Vormgeving en eigenschappen visualisaties
 Hoe ga ik deze visualisaties vormgeven? Ik heb een website gemaakt met twee pagina's die allebei een eigen functie vervullen in het aanbieden van informatie over het migratieprobleem. Index.html bevat een stuk informatieve tekst die de visualisaties in data.html context geven. Hieronder staan foto's van de beide pagina's en staat er in meer detail uitgelegd wat er op de pagina's beschreven staat.
 
-###Index:
-![](doc/home.jpg)
+###Index.html:
+![](doc/readmepics/UpperIndex.png)
+![](doc/readmepics/belowIndex.png)
 
-Op de 'Home'-pagina zal ik ten eerste een uitleg geven over de Europese migratiecrisis aan de hand van twee paragrafen. Tussen deze twee paragrafen laat ik nog een automatische slideshow lopen die foto's laat zien die gerelateerd zijn aan de Europese migratiecrisis. Onder deze uitleg zal er vervolgens een datamap aanwezig zijn die is 'gefocust' op Europa. De (Europese) landen op deze kaart zullen ingekleurd zijn met één kleur met verschillende (bijvoorbeeld vijf) tinten. Hierbij zal een lichtere kleurentint betekenen dat een bepaald land minder vluchtelingen heeft opgenomen en een donkerdere kleur zal betekenen dat een bepaald land meer vluchtelingen heeft opgenomen. Mijn idee is om onder de datamap een 'slider' toe te voegen die ervoor zorgt dat gebruikers voor verschillende jaren kunnen kijken hoeveel immigranten ieder Europees land voor het gekozen jaar (op de slider) heeft opgenomen. Dit kan bijvoorbeeld voor de jaren 2000 totenmet 2015, waarbij ieder tussenliggend jaar geselecteerd kan worden op de slider. De kleurentinten van landen op de kaart zullen bij verschuiving van de slider dan veranderen op basis van het aantal immigranten dat landen in het gekozen jaar hebben opgenomen. Wanneer de gebruiker met de muis over een land heen gaat, wil ik dat het aantal immigranten dat het land dat jaar heeft opgenomen zichtbaar wordt in een tooltip (en natuurlijk ook de naam van het land). 
-Een optie die ik wellicht ook nog wil implementeren is dat het mogelijk is om lijnen/bogen te laten verschijnen wanneer er op een land geklikt wordt (aan de hand van bijvoorbeeld een button). Deze bogen zouden dan van dit land naar een aantal andere landen (bijv. 5 landen) gaan waar de meeste immigranten vandaan komen die het land heeft opgenomen waarop geklikt is. Wellicht wil ik naast deze bogen dan ook nog het aantal immigranten uit ieder van deze landen melden.
+Op deze pagina staat informatie over de geschiedenis van Europa ten aanzien van illegale immigratie en de Europese immigratiecrisis van 2015. De informatie wordt gegeven in5 paragrafen. Aan het einde is er nog een paragraaf die duidelijk maakt wat het doel is van de website/applicatie.
 
-Wanneer er op een land geklikt wordt in de hierboven beschreven datamap wil ik hiernaast dat er onder de datamap een barchart verschijnt die voor dit land (en voor het specifieke jaar) laat zien waar de immigranten die het land heeft opgenomen vandaan kwamen. Het ligt aan de data of ik hier voor ieder land waar immigranten vandaan komen een barchart laat zien of dat ik alleen data laat zien van bijvoorbeeld de 5 landen waar het grootste aantal immigranten vandaan komen. Als een land bijvoorbeeld immigranten heeft opgenomen uit 40 landen, waarvan uit heel veel van deze landen maar enkele mensen, dan wordt de barchart misschien enigszins onoverzichtelijk.
+###Data.html
+![](doc/readmepics/upperData.png)
+![](doc/readmepics/DatamapPic.png)
+![](doc/readmepics/GraphsPic.png)
 
-Bovenaan de 'Home'-pagina zal een header aanwezig zijn die 'fixed' gepositioneerd is en dus meebeweegt over de hele pagina. In deze header zal een titel staan en een navigatiemenu waarmee de gebruiker naar de verschillende pagina's op de website kan navigeren. Deze header is overigens ook aanwezig op de andere pagina's van de website.
+Op deze pagina staat nog een kleine paragraaf die de gebruiker uitlegt hoe de visualisaties werken en wat er in de visualisaties voor informatie aanwezig is. Ook staan de bronnen voor de data hier vermeld. De datamap op de pagina wordt dynamisch ingekleurd op basis van het aantal eerste asielzoekaanvragen een land ontvangen heeft voor een gegeven jaar. Dit jaar kan de gebruiker van de pagina gebruiken door de slider onder de kaart te bewegen. Wanneer een gebruiker zijn/haar muis over een land beweegt, verschijnt er in een tooltip informatie over het land en de data. Ook zijn op deze kaart cirkels aanwezig die illegale immigratieroutes richting Europa weergeven. Deze cirkels veranderen per jaar op de slider van grootte op basis van het aantal illegale grens oversteken dat er via de routes is gemaakt naar Europese landen om Europa binnen te komen. 
 
-###Migration Routes
-![](doc/routes.jpg)
+Onder de kaart is ook een barchart weergegeven. Deze bevat informatie over de top 5 (of meer) landen van herkomst waar voor een gegeven jaar de meeste asielzoekers vandaan zijn gekomen voor een gekozen Europees land. Wanneer de gebruiker op een land in de kaart klikt update de barchart om informatie voor dat land te laten zien voor het gegeven jaar. Als de timeslider vervolgens bewogen wordt update de barchart ook op basis van het jaar op de slider.
 
-Op de 'Migration Routes'-pagina zal ik eerst een korte uitleg geven over migratieroutes naar Europa. Er zijn namelijk verschillende veelgebruikte routes die immigranten gebruiken om naar Europa te komen. Onder deze uitleg staat wederom een datamap. Deze keer staat er geen informatie over het aantal immigranten dat ieder land opneemt, maar staat er hoeveel immigranten er via verschillende routes Europa binnenkomen. Deze routes wil ik aangeven aan de hand van cirkels (zie foto hierboven) of - als dit mogelijk is - aan de hand van pijlen. De grootte van de cirkels/pijlen geven dan aan hoeveel immigranten er via een bepaalde route Europa binnenkomen. Ook hier wil ik weer een slider toevoegen waarmee de gebruiker een jaar kan kiezen. De cirkels/pijlen zullen voor ieder jaar veranderen van grootte, aan de hand van de hoeveelheid immigranten dat via de verschillende routes Europa binnen is gekomen.
+Ook is er onder de kaart nog een lijngrafiek. Hierin staan initieel 7 lijnen getekend die ieder de toename en/of afname in gebruik van een migratieroute tussen de jaren 2006-2016 weergeven. Wanneer de gebruiker op een cirkel in de kaart klikt of één van de lijnen aanklikt verandert de lijngrafiek. Deze geeft dan namelijk alleen nog de lijn weer voor de migratieroute die de gebruiker gekozen heeft. Een crosshair maakt het voor de gebruiker mogelijk om het gebruik van die route te zien voor het jaar waar hij/zij de muis bijhoudt. Een button naast de lijngrafiek maakt het voor de gebruiker vervolgens weer mogelijk om weer alle routes in de lijngrafiek weer te geven.
 
-###Migrant Growth
-![](doc/growth.jpg)
-
-Op de 'Migrant Growth'-pagina zal ik een lijngrafiek toevoegen die laat zien hoeveel immigranten er in totaal in Europa zijn binnengekomen over een spanne van een aantal jaren (wederom, bijvoorbeeld 2000-2015). Ook wil ik aan deze lijn een tooltip toevoegen die het aantal immigranten laat zien voor een bepaald jaar (afhankelijk van muispositie). Wellicht wil ik bij de lijngrafiek ook nog een optie toevoegen die ervoor zorgt dat men over dit aantal jaren kan zien via welke migratieroutes immigranten naar Europa kwamen, door voor iedere immigratieroute een lijn te laten zien in de lijngrafiek.
+Hiernaast is er ook een button aanwezig bij de datamap die het mogelijk maakt om de visualisaties over migratieroutes te verbergen of weer te laten zien. Wanneer de gebruiker deze button indrukt om hem uit te zetten verdwijnen de cirkels en de lijngrafiek van de pagina.
 
 ##Data
-Voor de hierboven beschreven visualizaties zal ik waarschijnlijk verschillende datasets nodig hebben. Ik heb sowieso voor ieder Europees land informatie nodig over het totaal aantal immigranten dat dit land heeft opgenomen.Hiernaast heb ik voor ieder land ook informatie nodig over uit welke landen deze immigranten zijn gekomen + de aantallen die uit deze landen zijn gekomen. Preferabel heb ik hierover informatie van ongeveer 2000/2005 totenmet 2015 (en het liefst zelfs 2016). Hiernaast zal ik ook een dataset nodig hebben die informatie bevat over het aantal immigranten dat via verschillende routes Europa binnen is gekomen. Deze informatie heb ik vooral nodig van de laatste jaren, aangezien de migrantencrisis voornamelijk in de laatste jaren is ontstaan. Alle data wil ik in JSON format zetten door Python te gebruiken. Vervolgens wil ik deze JSON data inladen in een javascript bestand. JSON maakt het in Javascript namelijk makkelijk om met de data te werken.
+Voor de hierboven beschreven visualizaties zijn twee datasets gebruikt. De eerste dataset bevat voor ieder Europees land informatie over het aantal asielzoekers dat tussen 2006-2016 voor het eerst een asielaanvraag heeft gedaan in dit land. Dit staat per land van herkomst in de dataset aanwezig. De tweede dataset bevat informatie over het aantal illegale grensoversteken per migratieroute tussen de jaren 2006 en 2016. Datasets zijn in Python omgezet naar twee aparte JSON-files.
 
-##API'S?
-Op dit moment weet ik nog niet wat voor API'S ik allemaal nodig ga hebben. Ik weet alleen dat ik D3 zal moeten gebruiken voor de datamaps en dat ik D3 ook zal gebruiken voor de andere beoogde visualizaties in mijn project. Ook heb ik gezien dat er API'S zijn die het mogelijk maken om makkelijk een automatische slideshow (zie 'Home'-pagina stukje) te implementeren. Hier zal ik dus ook naar zoeken. 
-
-##Mogelijke Technische Problemen
-Ik heb op dit moment ook nog nauwelijks oog op wat voor technische problemen ik wellicht tegen ga komen tijdens dit project. In principe ben ik al bekend met datamaps en heb ik al eens lijngrafieken en barcharts gemaakt. Ik heb echter nog nooit een slider toegepast op een datamap, bogen toegevoegd aan een datamap en cirkels/pijlen toegevoegd aan een datamap. Deze dingen zouden dus nog wel even pittig kunnen worden voor mij.
-
-##Minimum Viable Product
-Enkele van deze dingen zou ik echter pas later kunnen proberen toe te passen, als blijkt dat ik nog genoeg tijd heb. 
-Daarvoor wil ik sowieso de volgende dingen goed werkend hebben (MVP):
-- Barchart en datamap op de home pagina interacteren naar behoren.
-- De sliders voor de datamaps op zowel de home pagina als de migration routes pagina functioneren naar behoren.
-- De datamap op de migration routes pagina is compleet (waarschijnlijk met cirkels, wellicht pijlen).
-- De lijngrafiek op de migrant growth pagina laat groei van immigranten in Europa zien in één lijn
-- Layout van de gehele site is naar behoren
-
-Dingen die ik nog zou kunnen toevoegen als er tijd is (optioneel):
-- In de barchart op de homepagina bogen die aangeven uit welke (top 5) landen immigranten komen voor een land waarop geklikt wordt. Wellicht nog het aantal immigranten dat uit deze landen komt naast de bogen.
-- In de lijngrafiek op de migrant growth pagina een drop-down menu toevoegen, zodat de gebruiker meerdere lijnen te zien krijgt voor het gebruik van de verschillende migratieroutes in Europa door immigranten, over de jaren heen.
-- Wellicht sla ik ofwel de tweede datamap, ofwel de lijngrafiek over, wanneer blijkt dat implementatie van beiden onhaalbaar is. Ik kan dit op het moment voor mezelf nog niet heel goed inschatten.
-
-##Gelijkmatige implementaties
-Er zijn op het web al best veel visualizaties te vinden om meer over de migratiecrisis duidelijk te maken. Zij gebruiken vaak barcharts om aantallen weer te geven, en kaarten in combinatie met pijlen om migratieroutes weer te geven.
-
-## Cijfer voor CodeHub
-Codehub gaf een 5 met libraries erin. Zonder externe code krijg ik een 7
+### Datasets
+Ik heb twee datasets gebruikt en heb deze van de volgende bronnen.
+* Voor de refstreams.json dataset heb ik de tabel onder het kopje 'Migrant routes, development, and responses in individual countries' gebruikt op https://en.wikipedia.org/wiki/European_migrant_crisis. De originele data komt van Frontex.
+* Voor de migrants.json dataset heb ik een csv gevonden op http://popstats.unhcr.org/en/asylum_seekers_monthly.
 
 ## Externe Bronnen 
 ###Gebruikte Foto's voor Slider
@@ -80,7 +58,5 @@ CSS:
 * d3-queue.v3.min.js, voor inladen json-files. Copyright: 2016, Mike Bostock. Link: https://d3js.org/d3-queue.v3.min.js
 * datamaps.world.min.js?v=1, voor het creeëren van datamap. Copyright: 2012, Mark DiMarco. Link: https://datamaps.github.io/scripts/datamaps.world.min.js?v=1
 
-### Datasets
-Ik heb twee datasets gebruikt en heb deze van de volgende bronnen.
-* Voor de refstreams.json dataset heb ik de tabel onder het kopje 'Migrant routes, development, and responses in individual countries' gebruikt op 
+
 
